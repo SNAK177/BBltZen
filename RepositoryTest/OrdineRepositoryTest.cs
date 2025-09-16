@@ -50,7 +50,7 @@ namespace Repository.Tests
         {
             // Arrange
             _mockContext.Setup(x => x.Ordine)
-                        .Returns(CreateMockDbSet(_mockOrdini));
+                        .ReturnsDbSetAsync(_mockOrdini); // Use ReturnsDbSetAsync instead
 
             // Act
             var result = await _repository.GetAllAsync();
@@ -58,6 +58,11 @@ namespace Repository.Tests
             // Assert
             Assert.NotNull(result);
             Assert.Equal(2, result.Count());
+        }
+
+        private object GetMockSet()
+        {
+            return _mockOrdini.AsQueryable().BuildMockDbSet();
         }
 
         [Fact]
@@ -110,21 +115,19 @@ namespace Repository.Tests
             };
 
             var mockSet = new Mock<DbSet<Ordine>>();
-            var allOrdini = new List<Ordine>();
+            var addedOrdine = (Ordine)null;
 
             mockSet.Setup(x => x.AddAsync(It.IsAny<Ordine>(), It.IsAny<CancellationToken>()))
-                         .Returns(ValueTask.FromResult((EntityEntry<Ordine>)null));
+                   .Callback<Ordine, CancellationToken>((o, ct) =>
+                   {
+                       o.OrdineId = _mockOrdini.Max(x => x.OrdineId) + 1; // Set the ID
+                       addedOrdine = o;
+                   })
+                   .Returns(ValueTask.FromResult((Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<Ordine>)null));
 
             _mockContext.Setup(x => x.Ordine).Returns(mockSet.Object);
             _mockContext.Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()))
-                        .ReturnsAsync(1)
-                        .Callback(() =>
-                        {
-                            if (allOrdini.Any())
-                            {
-                                allOrdini.Last().OrdineId = allOrdini.Count + 1;
-                            }
-                        });
+                        .ReturnsAsync(1);
 
             // Act
             var result = await _repository.AddAsync(newOrdineDto);
@@ -132,6 +135,7 @@ namespace Repository.Tests
             // Assert
             Assert.NotNull(result);
             Assert.True(result.OrdineId > 0);
+            Assert.Equal(_mockOrdini.Max(x => x.OrdineId) + 1, result.OrdineId);
             mockSet.Verify(x => x.AddAsync(It.IsAny<Ordine>(), It.IsAny<CancellationToken>()), Times.Once);
             _mockContext.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
