@@ -13,20 +13,20 @@ namespace Repository
     {
         public static void AddServiceDb(this IServiceCollection services)
         {
-            services.AddTransient <IOrdineRepository, OrdineRepository>();
-            services.AddTransient <IDolceRepository, DolceRepository>();
+            services.AddScoped <IOrdineRepository, OrdineRepository>();
+            services.AddScoped<IDolceRepository, DolceRepository>();
             //services.AddTransient <IVwIngredientiPopolariRepository, VwIngredientiPopolariRepository>();
-            services.AddTransient <IIngredienteRepository, IngredienteRepository>();
-            services.AddTransient <INotificheOperativeRepository, NotificheOperativeRepository>();
-            services.AddTransient <IOrderItemRepository, OrderItemRepository>();
-            services.AddTransient <IOrdineRepository, OrdineRepository>();
+            services.AddScoped<IIngredienteRepository, IngredienteRepository>();
+            services.AddScoped<INotificheOperativeRepository, NotificheOperativeRepository>();
+            services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+            services.AddScoped<IOrdineRepository, OrdineRepository>();
             //services.AddTransient <ISessioniQrRepository, SessioniQrRepository>;
-            services.AddTransient <IStatoOrdineRepository, StatoOrdineRepository>();
-            services.AddTransient <IStatoPagamentoRepository, StatoPagamentoRepository>();
-            services.AddTransient <ITavoloRepository, TavoloRepository>();
-            services.AddTransient <ITaxRatesRepository, TaxRatesRepository>();
-            services.AddTransient <IUtentiRepository, UtentiRepository>();
-            services.AddTransient <IVwStatisticheOrdiniAvanzateRepository, VwStatisticheOrdiniAvanzateRepository>();
+            services.AddScoped<IStatoOrdineRepository, StatoOrdineRepository>();
+            services.AddScoped<IStatoPagamentoRepository, StatoPagamentoRepository>();
+            services.AddScoped<ITavoloRepository, TavoloRepository>();
+            services.AddScoped<ITaxRatesRepository, TaxRatesRepository>();
+            services.AddScoped<IUtentiRepository, UtentiRepository>();
+            services.AddScoped<IVwStatisticheOrdiniAvanzateRepository, VwStatisticheOrdiniAvanzateRepository>();
         }
     }
 }
