@@ -21,7 +21,19 @@ namespace Repository.Service
 
         public async Task<IEnumerable<OrdineDTO>> GetAllAsync()
         {
-            return (IEnumerable<OrdineDTO>)await _context.Ordine.ToListAsync();
+            var ordini = await _context.Ordine.AsNoTracking().ToListAsync();
+            return ordini.Select(o => new OrdineDTO
+            {
+                OrdineId = o.OrdineId,
+                ClienteId = o.ClienteId,
+                DataCreazione = o.DataCreazione,
+                DataAggiornamento = o.DataAggiornamento,
+                StatoOrdineId = o.StatoOrdineId,
+                StatoPagamentoId = o.StatoPagamentoId,
+                Totale = o.Totale,
+                Priorita = o.Priorita
+
+            }).ToList();
         }
 
         public async Task<OrdineDTO?> GetByIdAsync(int id)
