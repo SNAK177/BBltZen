@@ -21,27 +21,39 @@ namespace Repository.Service
 
         public async Task<IEnumerable<OrdineDTO>> GetAllAsync()
         {
-            return (IEnumerable<OrdineDTO>)await _context.Ordine.ToListAsync();
+            return await _context.Ordine
+                            .AsNoTracking()
+                            .Select(o => new OrdineDTO
+                            {
+                                OrdineId = o.OrdineId,
+                                ClienteId = o.ClienteId,
+                                DataCreazione = o.DataCreazione,
+                                DataAggiornamento = o.DataAggiornamento,
+                                StatoOrdineId = o.StatoOrdineId,
+                                StatoPagamentoId = o.StatoPagamentoId,
+                                Totale = o.Totale,
+                                Priorita = o.Priorita
+                            })
+                            .ToListAsync();
         }
 
         public async Task<OrdineDTO?> GetByIdAsync(int id)
         {
-            var ordine = await _context.Ordine
-                .AsNoTracking()
-                .FirstOrDefaultAsync(o => o.OrdineId == id);
-
-            if (ordine == null) return null;
-            return new OrdineDTO
-            {
-                OrdineId = ordine.OrdineId,
-                ClienteId = ordine.ClienteId,
-                DataCreazione = ordine.DataCreazione,
-                DataAggiornamento = ordine.DataAggiornamento,
-                StatoOrdineId = ordine.StatoOrdineId,
-                StatoPagamentoId = ordine.StatoPagamentoId,
-                Totale = ordine.Totale,
-                Priorita = ordine.Priorita
-            };
+            return await _context.Ordine
+               .AsNoTracking()
+               .Where(o => o.OrdineId == id)
+               .Select(o => new OrdineDTO
+               {
+                   OrdineId = o.OrdineId,
+                   ClienteId = o.ClienteId,
+                   DataCreazione = o.DataCreazione,
+                   DataAggiornamento = o.DataAggiornamento,
+                   StatoOrdineId = o.StatoOrdineId,
+                   StatoPagamentoId = o.StatoPagamentoId,
+                   Totale = o.Totale,
+                   Priorita = o.Priorita
+               })
+               .FirstOrDefaultAsync();
 
         }
 
