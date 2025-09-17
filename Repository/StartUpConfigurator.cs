@@ -15,12 +15,12 @@ namespace Repository
         {
             services.AddScoped <IOrdineRepository, OrdineRepository>();
             services.AddScoped<IDolceRepository, DolceRepository>();
-            //services.AddTransient <IVwIngredientiPopolariRepository, VwIngredientiPopolariRepository>();
+            services.AddTransient <IVwIngredientiPopolariRepository, VwIngredientiPopolariRepository>();
             services.AddScoped<IIngredienteRepository, IngredienteRepository>();
             services.AddScoped<INotificheOperativeRepository, NotificheOperativeRepository>();
             services.AddScoped<IOrderItemRepository, OrderItemRepository>();
             services.AddScoped<IOrdineRepository, OrdineRepository>();
-            //services.AddTransient <ISessioniQrRepository, SessioniQrRepository>;
+            services.AddScoped<ISessioniQrRepository, SessioniQrRepository>();
             services.AddScoped<IStatoOrdineRepository, StatoOrdineRepository>();
             services.AddScoped<IStatoPagamentoRepository, StatoPagamentoRepository>();
             services.AddScoped<ITavoloRepository, TavoloRepository>();

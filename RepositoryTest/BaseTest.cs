@@ -11,7 +11,10 @@ namespace RepositoryTest
         public BaseTest()
         {
             var build = WebApplication.CreateBuilder();
+
             build.Services.AddTransient<IOrdineRepository, OrdineRepository>();
+            build.Services.AddTransient<IDolceRepository, DolceRepository>();
+
             build.Services.AddServiceDb();
             build.Services.AddDbContext<BubbleTeaContext>();
             build.Services.AddDbContext<Database.BubbleTeaContext>();
