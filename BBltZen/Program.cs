@@ -23,6 +23,7 @@ namespace BBltZen
             builder.Services.AddDbContext<Database.BubbleTeaContext>();
             builder.Services.AddScoped<IOrdineRepository, OrdineRepository>();
             builder.Services.AddScoped<IDolceRepository, DolceRepository>();
+            builder.Services.AddScoped<IUtentiRepository, UtentiRepository>();
 
             var app = builder.Build();
 

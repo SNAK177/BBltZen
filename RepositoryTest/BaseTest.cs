@@ -14,6 +14,8 @@ namespace RepositoryTest
 
             build.Services.AddTransient<IOrdineRepository, OrdineRepository>();
             build.Services.AddTransient<IDolceRepository, DolceRepository>();
+            build.Services.AddTransient<IUtentiRepository, UtentiRepository>();
+
 
             build.Services.AddServiceDb();
             build.Services.AddDbContext<BubbleTeaContext>();
