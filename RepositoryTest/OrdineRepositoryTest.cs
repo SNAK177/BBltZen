@@ -5,7 +5,7 @@ using Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace Repository.Tests
+namespace RepositoryTests
 {
     public class OrdineRepositoryTests
     {
