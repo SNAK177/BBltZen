@@ -32,7 +32,7 @@ namespace Repository.Service
                                 StatoOrdineId = o.StatoOrdineId,
                                 StatoPagamentoId = o.StatoPagamentoId,
                                 Totale = o.Totale,
-                                Priorita = o.Priorita
+                                Priorita = (int)o.Priorita
                             })
                             .ToListAsync();
         }
@@ -51,7 +51,7 @@ namespace Repository.Service
                    StatoOrdineId = o.StatoOrdineId,
                    StatoPagamentoId = o.StatoPagamentoId,
                    Totale = o.Totale,
-                   Priorita = o.Priorita
+                   Priorita = (int)o.Priorita
                })
                .FirstOrDefaultAsync();
 
