@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Repository.Service;
 using Xunit;
 
-namespace Repository.Tests
+namespace RepositoryTests
 {
     public class DolceRepositoryTests
     {
