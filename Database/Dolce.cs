@@ -24,4 +24,6 @@ public partial class Dolce
     public DateTime DataAggiornamento { get; set; }
 
     public virtual Articolo Articolo { get; set; } = null!;
+
+    public bool IsDeleted { get; set; } = false;
 }
