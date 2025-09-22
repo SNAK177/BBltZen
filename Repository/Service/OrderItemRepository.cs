@@ -72,6 +72,11 @@ namespace Repository.Service
                 PrezzoUnitario = orderItem.PrezzoUnitario,
                 ScontoApplicato = orderItem.ScontoApplicato,
                 Imponibile = orderItem.Imponibile,
+                TipoArticolo = orderItem.TipoArticolo,           
+                TotaleIvato = orderItem.TotaleIvato,
+                TaxRateId = orderItem.TaxRateId,
+                DataCreazione = DateTime.UtcNow,
+                DataAggiornamento = DateTime.UtcNow
             };
             await _context.OrderItem.AddAsync(orderIteme);
             await _context.SaveChangesAsync();
@@ -89,6 +94,9 @@ namespace Repository.Service
             orderItem.PrezzoUnitario = orderItems.PrezzoUnitario;
             orderItem.ScontoApplicato = orderItems.ScontoApplicato;
             orderItem.Imponibile = orderItems.Imponibile;
+            orderItem.TipoArticolo = orderItems.TipoArticolo;
+            orderItem.TotaleIvato = orderItems.TotaleIvato;
+            orderItem.TaxRateId = orderItems.TaxRateId;
             orderItem.DataAggiornamento = DateTime.UtcNow;
 
             _context.OrderItem.Update(orderItem);
