@@ -1,13 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Database;
+﻿using Database;
 using DTO;
 using Microsoft.EntityFrameworkCore;
 using Repository.Service;
-using Xunit;
 
-namespace RepositoryTests
+namespace RepositoryTest
 {
     public class DolceRepositoryTests
     {
