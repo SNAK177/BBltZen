@@ -37,7 +37,7 @@ namespace BBltZen.Controllers
             return Ok(notifiche);
         }
 
-        [HttpGet("priorità/{priotita:int")]
+        [HttpGet("priorità/{priorita:int}")]
         public async Task<ActionResult<IEnumerable<NotificheOperativeDTO>>> GetByPriorita(int priotita)
         {
             var notifiche = await _repository.GetByPrioritaAsync(priotita);
