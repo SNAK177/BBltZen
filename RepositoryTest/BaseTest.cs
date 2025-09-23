@@ -22,7 +22,7 @@ namespace RepositoryTest
             build.Services.AddTransient<ITaxRatesRepository, TaxRatesRepository>();
             build.Services.AddTransient<ISessioniQrRepository, SessioniQrRepository>();
             build.Services.AddTransient<IIngredienteRepository, IngredienteRepository>();
-            //build.Services.AddTransient<IVwIngredientiPopolariRepository, VwIngredientiPopolariRepository>();
+            build.Services.AddTransient<IVwIngredientiPopolariRepository, VwIngredientiPopolariRepository>();
             build.Services.AddTransient<IVwStatisticheOrdiniAvanzateRepository, VwStatisticheOrdiniAvanzateRepository>();
             build.Services.AddTransient<IOrderItemRepository, OrderItemRepository>();
             
