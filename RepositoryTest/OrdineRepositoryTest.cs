@@ -1,10 +1,9 @@
-﻿using Repository.Service;
+﻿using Database;
 using DTO;
-using Database;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.InMemory;
+using Repository.Service;
 
-namespace RepositoryTests
+namespace RepositoryTest
 {
     public class OrdineRepositoryTest
     {

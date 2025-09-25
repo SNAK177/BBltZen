@@ -170,7 +170,7 @@ namespace Repository.Service
         {
             var notifica = await _context.NotificheOperative.FindAsync(notificaDto.NotificaId);
             if (notifica == null)
-                throw new ArgumentException("Notifica not found");
+                throw new ArgumentException($"Notifica with Id{notificaDto.NotificaId} not found");
 
             // notifica.DataCreazione = notificaDto.DataCreazione; // Usually not updated
             notifica.Messaggio = notificaDto.Messaggio;
@@ -178,7 +178,10 @@ namespace Repository.Service
             notifica.Stato = notificaDto.Stato;
             notifica.DataGestione = DateTime.Now; // Always update timestamp
             // Update other properties as needed
-
+            
+            if(notifica.Stato == "Gestita")
+                notifica.DataGestione= DateTime.UtcNow;
+            
             _context.NotificheOperative.Update(notifica);
             await _context.SaveChangesAsync();
 

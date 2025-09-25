@@ -23,6 +23,17 @@ namespace BBltZen
             builder.Services.AddScoped<IOrdineRepository, OrdineRepository>();
             builder.Services.AddScoped<IDolceRepository, DolceRepository>();
             builder.Services.AddScoped<IUtentiRepository, UtentiRepository>();
+            builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+            builder.Services.AddScoped<IIngredienteRepository, IngredienteRepository>();
+            builder.Services.AddScoped<IStatoPagamentoRepository, StatoPagamentoRepository>();
+            builder.Services.AddScoped<IStatoOrdineRepository, StatoOrdineRepository>();
+            builder.Services.AddScoped<ITavoloRepository, TavoloRepository>();
+            builder.Services.AddScoped<ISessioniQrRepository, SessioniQrRepository>();
+            builder.Services.AddScoped<ITaxRatesRepository, TaxRatesRepository>();
+            builder.Services.AddScoped<INotificheOperativeRepository, NotificheOperativeRepository>();
+            builder.Services.AddScoped<IVwIngredientiPopolariRepository, VwIngredientiPopolariRepository>();
+            builder.Services.AddScoped<IVwStatisticheOrdiniAvanzateRepository, VwStatisticheOrdiniAvanzateRepository>();
+            
 
             var app = builder.Build();
 
