@@ -92,6 +92,7 @@ namespace RepositoryTest
             await repository.UpdateAsync(dto);
 
             var updated = await context.Utenti.FindAsync(utente.UtenteId);
+            Assert.NotNull(updated);
             Assert.Equal("newhash", updated.PasswordHash);
         }
 
