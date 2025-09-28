@@ -27,16 +27,18 @@ namespace BBltZen
             );
             return new JwtSecurityTokenHandler().WriteToken(token);//mette il token
         }
-        public (string username, int utenteId) GetInfoToken()
+        public (string? username, int utenteId) GetInfoToken()
         {
             if (_contextAccessor.HttpContext == null)
                 return (null, 0);
             var userClaims = _contextAccessor.HttpContext.User.Claims;
             if (userClaims.Any())
             {
+                var usernameClaim = userClaims.FirstOrDefault(p => p.Type == "USERNAME");
+                var utenteIdClaimObj = userClaims.FirstOrDefault(p => p.Type == "UTENTE_ID");
 
-                var username = userClaims.FirstOrDefault(p => p.Type == "USERNAME").Value;
-                var utenteId = int.Parse(userClaims.FirstOrDefault(p => p.Type == "UTENTE_ID").Value);
+                var username = usernameClaim != null ? usernameClaim.Value : null;
+                var utenteId = utenteIdClaimObj != null ? int.Parse(utenteIdClaimObj.Value) : 0;
                 return (username, utenteId);
             }
             return (null, 0);//scrive il token
