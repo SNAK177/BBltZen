@@ -1,8 +1,11 @@
+using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Repository;
 using Repository.Interface;
 using Repository.Service;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Microsoft.AspNetCore.Builder;
 
 namespace BBltZen
 {
@@ -11,6 +14,24 @@ namespace BBltZen
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            
+            //Configura JWT
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtServizio.CHIAVE;
+                options.DefaultChallengeScheme = JwtServizio.CHIAVE;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(BBltZen.JwtServizio.CHIAVE))
+                };
+            });
 
             // Add services to the container.
 
