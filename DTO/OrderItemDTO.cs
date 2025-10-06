@@ -17,7 +17,7 @@ namespace DTO
         public decimal Imponibile { get; set; }
         public DateTime DataCreazione { get; set; }
         public DateTime DataAggiornamento { get; set; }
-        public string TipoArticolo { get; set; } = null!;
+        public string? TipoArticolo { get; set; } 
         public decimal? TotaleIvato { get; set; }
         public int TaxRateId { get; set; }
     }
