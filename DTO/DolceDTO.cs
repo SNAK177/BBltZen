@@ -18,6 +18,5 @@ namespace DTO
         public DateTime DataCreazione { get; set; }
         public DateTime DataAggiornamento { get; set; }
 
-        //public bool IsDeleted { get; set; }= false;
     }
 }

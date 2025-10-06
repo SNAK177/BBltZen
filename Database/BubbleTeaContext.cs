@@ -127,7 +127,9 @@ public partial class BubbleTeaContext : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             // Usa SQL Server solo fuori dai test
-            optionsBuilder.UseSqlServer("Server=CES01543\\SQLEXPRESS;Database=BubbleTea;Integrated Security=True;TrustServerCertificate=True;");
+            //optionsBuilder.UseSqlServer("Server=CES01543\\SQLEXPRESS;Database=BubbleTea;Integrated Security=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=PNRR0224_022\\SQLEXPRESS;Database=Bubble_Tea;Integrated Security=True;TrustServerCertificate=True;");
+
         }
     }
 

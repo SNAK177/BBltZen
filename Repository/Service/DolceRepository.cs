@@ -36,7 +36,7 @@ namespace Repository.Service
         {
             return await _context.Dolce
                 .AsNoTracking()
-                .Where(d => !d.IsDeleted)
+                .Where(d => !d.Disponibile)
                 .Select(d => MapToDTO(d))
                 .ToListAsync();
         }
@@ -45,7 +45,7 @@ namespace Repository.Service
         {
             var dolce = await _context.Dolce
                 .AsNoTracking()
-                .FirstOrDefaultAsync(d => d.ArticoloId == id && !d.IsDeleted);
+                .FirstOrDefaultAsync(d => d.ArticoloId == id && !d.Disponibile);
 
             return dolce == null ? null : MapToDTO(dolce);
         }
@@ -107,11 +107,10 @@ namespace Repository.Service
                 Prezzo = entity.Prezzo,
                 Descrizione = entity.Descrizione,
                 ImmagineUrl = entity.ImmagineUrl,
-                Disponibile = entity.Disponibile,
                 Priorita = entity.Priorita,
                 DataCreazione = DateTime.Now,
                 DataAggiornamento = DateTime.Now,
-                IsDeleted = false
+                Disponibile = false
             };
 
             await _context.Dolce.AddAsync(dolce);
@@ -130,7 +129,7 @@ namespace Repository.Service
                 throw new ArgumentException("Invalid entity or entity ID");
 
             var existingDolce = await _context.Dolce
-                .FirstOrDefaultAsync(d => d.ArticoloId == entity.ArticoloId && !d.IsDeleted);
+                .FirstOrDefaultAsync(d => d.ArticoloId == entity.ArticoloId && !d.Disponibile);
 
             if (existingDolce == null)
                 throw new KeyNotFoundException($"Dolce with ID {entity.ArticoloId} not found");
@@ -149,10 +148,10 @@ namespace Repository.Service
         // Soft delete
         public async Task<bool> DeleteAsync(int id)
         {
-            var dolce = await _context.Dolce.FirstOrDefaultAsync(d => d.ArticoloId == id && !d.IsDeleted);
+            var dolce = await _context.Dolce.FirstOrDefaultAsync(d => d.ArticoloId == id && !d.Disponibile);
             if (dolce == null) return false;
 
-            dolce.IsDeleted = true;
+            dolce.Disponibile = true;
             dolce.DataAggiornamento = DateTime.Now;
             await _context.SaveChangesAsync();
             return true;
@@ -160,14 +159,14 @@ namespace Repository.Service
 
         public async Task<bool> ExistsAsync(int id)
         {
-            return await _context.Dolce.AnyAsync(d => d.ArticoloId == id && !d.IsDeleted);
+            return await _context.Dolce.AnyAsync(d => d.ArticoloId == id && !d.Disponibile);
         }
 
         public async Task<IEnumerable<DolceDTO>> GetDisponibiliAsync()
         {
             return await _context.Dolce
                 .AsNoTracking()
-                .Where(d => d.Disponibile && !d.IsDeleted)
+                .Where(d => d.Disponibile )
                 .OrderBy(d => d.Priorita)
                 .ThenBy(d => d.Nome)
                 .Select(d => MapToDTO(d))
@@ -178,7 +177,7 @@ namespace Repository.Service
         {
             return await _context.Dolce
                 .AsNoTracking()
-                .Where(d => d.Priorita == priorita && d.Disponibile && !d.IsDeleted)
+                .Where(d => d.Priorita == priorita && d.Disponibile )
                 .OrderBy(d => d.Nome)
                 .Select(d => MapToDTO(d))
                 .ToListAsync();
@@ -186,7 +185,7 @@ namespace Repository.Service
 
         public async Task<bool> ToggleDisponibilitaAsync(int id, bool disponibile)
         {
-            var dolce = await _context.Dolce.FirstOrDefaultAsync(d => d.ArticoloId == id && !d.IsDeleted);
+            var dolce = await _context.Dolce.FirstOrDefaultAsync(d => d.ArticoloId == id && !d.Disponibile);
             if (dolce == null) return false;
 
             dolce.Disponibile = disponibile;

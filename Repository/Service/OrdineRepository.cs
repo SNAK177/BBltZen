@@ -21,20 +21,19 @@ namespace Repository.Service
 
         public async Task<IEnumerable<OrdineDTO>> GetAllAsync()
         {
-            return await _context.Ordine
-                            .AsNoTracking()
-                            .Select(o => new OrdineDTO
-                            {
-                                OrdineId = o.OrdineId,
-                                ClienteId = o.ClienteId,
-                                DataCreazione = o.DataCreazione,
-                                DataAggiornamento = o.DataAggiornamento,
-                                StatoOrdineId = o.StatoOrdineId,
-                                StatoPagamentoId = o.StatoPagamentoId,
-                                Totale = o.Totale,
-                                Priorita = (int)o.Priorita
-                            })
-                            .ToListAsync();
+            var ordini = await _context.Ordine
+                .Select(o => new OrdineDTO
+                {
+                    OrdineId = o.OrdineId,
+                    ClienteId = o.ClienteId, // se nullable, usare o.ClienteId ?? default
+                    DataCreazione = o.DataCreazione, // se nullable: o.DataCreazione ?? DateTime.MinValue
+                    DataAggiornamento = o.DataAggiornamento, // se nullable: o.DataAggiornamento ?? DateTime.MinValue
+                    StatoOrdineId = o.StatoOrdineId, // se nullable: o.DataConsegna ?? null
+                    StatoPagamentoId = o.StatoPagamentoId
+                })
+                .ToListAsync();
+
+            return ordini;
         }
 
         public async Task<OrdineDTO?> GetByIdAsync(int id)
@@ -51,10 +50,9 @@ namespace Repository.Service
                    StatoOrdineId = o.StatoOrdineId,
                    StatoPagamentoId = o.StatoPagamentoId,
                    Totale = o.Totale,
-                   Priorita = (int)o.Priorita
+                   Priorita = (int)o.Priorita!
                })
                .FirstOrDefaultAsync();
-
         }
 
         public async Task<OrdineDTO> AddAsync(OrdineDTO entity)
@@ -65,8 +63,8 @@ namespace Repository.Service
             var ordineEntity = new Ordine
             {
                 ClienteId = entity.ClienteId,
-                DataCreazione = entity.DataCreazione,
-                DataAggiornamento = entity.DataAggiornamento,
+                //DataCreazione = entity.DataCreazione,
+                //DataAggiornamento = entity.DataAggiornamento,
                 StatoOrdineId = entity.StatoOrdineId,
                 StatoPagamentoId = entity.StatoPagamentoId,
                 Totale = entity.Totale,
