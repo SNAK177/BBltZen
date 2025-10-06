@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace DTO
     public class IngredienteDTO
     {
         public int IngredienteId { get; set; }
+        [MaxLength(100)]
         public string Ingrediente1 { get; set; } = null!;
         public int CategoriaId { get; set; }
         public decimal PrezzoAggiunto { get; set; }
