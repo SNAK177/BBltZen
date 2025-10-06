@@ -1,22 +1,27 @@
-﻿using Database;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Database;
 using DTO;
 using Microsoft.EntityFrameworkCore;
 using Repository.Service;
+using Xunit;
 
 namespace RepositoryTest
 {
     public class DolceRepositoryTests
     {
+        // Crea un nuovo database in memoria per ogni test
         private BubbleTeaContext GetInMemoryContext()
         {
             var options = new DbContextOptionsBuilder<BubbleTeaContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
+
             var context = new BubbleTeaContext(options);
-            context.Database.EnsureCreated(); // Important!
+            context.Database.EnsureCreated();
             return context;
         }
-
 
         [Fact]
         public async Task AddAsync_ShouldAddDolce()
@@ -26,7 +31,7 @@ namespace RepositoryTest
 
             var dto = new DolceDTO
             {
-                ArticoloId = 999,
+                ArticoloId = 2,
                 Nome = "Tiramisu",
                 Prezzo = 4.5m,
                 Disponibile = true,
@@ -35,6 +40,7 @@ namespace RepositoryTest
 
             var result = await repo.AddAsync(dto);
 
+            Assert.NotNull(result);
             Assert.NotEqual(0, result.ArticoloId);
             Assert.Equal("Tiramisu", result.Nome);
             Assert.True(result.Disponibile);
@@ -50,6 +56,8 @@ namespace RepositoryTest
             await repo.AddAsync(new DolceDTO { Nome = "Cheesecake", Prezzo = 3.5m, Disponibile = true, Priorita = 2 });
 
             var all = await repo.GetAllAsync();
+
+            Assert.NotNull(all);
             Assert.Equal(2, all.Count());
         }
 
@@ -59,13 +67,21 @@ namespace RepositoryTest
             var context = GetInMemoryContext();
             var repo = new DolceRepository(context);
 
-            var dto = await repo.AddAsync(new DolceDTO { Nome = "Tiramisu", Prezzo = 4.5m, Disponibile = true, Priorita = 1 });
+            var dto = await repo.AddAsync(new DolceDTO
+            {
+                ArticoloId = 2,
+                Nome = "Tiramisu",
+                Prezzo = 4.5m,
+                Disponibile = true,
+                Priorita = 1
+            });
 
             var deleted = await repo.DeleteAsync(dto.ArticoloId);
+
             Assert.True(deleted);
 
             var all = await repo.GetAllAsync();
-            Assert.Empty(all); // Non deve essere restituito
+            Assert.Empty(all); // il dolce non deve essere più restituito
         }
 
         [Fact]
@@ -74,12 +90,21 @@ namespace RepositoryTest
             var context = GetInMemoryContext();
             var repo = new DolceRepository(context);
 
-            var dto = await repo.AddAsync(new DolceDTO { Nome = "Tiramisu", Prezzo = 4.5m, Disponibile = true, Priorita = 1 });
+            var dto = await repo.AddAsync(new DolceDTO
+            {
+                ArticoloId = 2,
+                Nome = "Tiramisu",
+                Prezzo = 4.5m,
+                Disponibile = true,
+                Priorita = 1
+            });
 
             var toggled = await repo.ToggleDisponibilitaAsync(dto.ArticoloId, false);
+
             Assert.True(toggled);
 
             var updated = await repo.GetByIdAsync(dto.ArticoloId);
+            Assert.NotNull(updated);
             Assert.False(updated!.Disponibile);
         }
 
@@ -93,6 +118,8 @@ namespace RepositoryTest
             await repo.AddAsync(new DolceDTO { Nome = "Cheesecake", Prezzo = 3.5m, Disponibile = true, Priorita = 2 });
 
             var filtered = await repo.GetByPrioritaAsync(1);
+
+            Assert.NotNull(filtered);
             Assert.Single(filtered);
             Assert.Equal("Tiramisu", filtered.First().Nome);
         }

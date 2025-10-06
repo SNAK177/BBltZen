@@ -29,14 +29,13 @@ namespace Repository.Service
             Priorita = d.Priorita,
             DataCreazione = d.DataCreazione,
             DataAggiornamento = d.DataAggiornamento
-           
         };
 
+        // Restituisce tutti i dolci
         public async Task<IEnumerable<DolceDTO>> GetAllAsync()
         {
             return await _context.Dolce
                 .AsNoTracking()
-                .Where(d => !d.Disponibile)
                 .Select(d => MapToDTO(d))
                 .ToListAsync();
         }
@@ -45,42 +44,11 @@ namespace Repository.Service
         {
             var dolce = await _context.Dolce
                 .AsNoTracking()
-                .FirstOrDefaultAsync(d => d.ArticoloId == id && !d.Disponibile);
+                .FirstOrDefaultAsync(d => d.ArticoloId == id);
 
             return dolce == null ? null : MapToDTO(dolce);
         }
 
-        //public async Task<DolceDTO> AddAsync(DolceDTO entity)
-        //{
-        //    if (entity == null)
-        //        throw new ArgumentNullException(nameof(entity));
-        //    if (string.IsNullOrWhiteSpace(entity.Nome))
-        //        throw new ArgumentException("Nome is required");
-        //    if (entity.Prezzo <= 0)
-        //        throw new ArgumentException("Prezzo must be greater than 0");
-
-        //    var dolce = new Dolce
-        //    {
-        //        Nome = entity.Nome,
-        //        Prezzo = entity.Prezzo,
-        //        Descrizione = entity.Descrizione,
-        //        ImmagineUrl = entity.ImmagineUrl,
-        //        Disponibile = entity.Disponibile,
-        //        Priorita = entity.Priorita,
-        //        DataCreazione = DateTime.Now,
-        //        DataAggiornamento = DateTime.Now,
-        //        IsDeleted = false
-        //    };
-
-        //    await _context.Dolce.AddAsync(dolce);
-        //    await _context.SaveChangesAsync();
-
-        //    entity.ArticoloId = dolce.ArticoloId;
-        //    entity.DataCreazione = dolce.DataCreazione;
-        //    entity.DataAggiornamento = dolce.DataAggiornamento;
-
-        //    return entity;
-        //}
         public async Task<DolceDTO> AddAsync(DolceDTO entity)
         {
             if (entity == null)
@@ -90,27 +58,16 @@ namespace Repository.Service
             if (entity.Prezzo <= 0)
                 throw new ArgumentException("Prezzo must be greater than 0");
 
-            // CREA PRIMA L'ARTICOLO ASSOCIATO
-            var articolo = new Articolo
-            {
-                Tipo = "Dolce",
-                DataCreazione = DateTime.Now,
-                DataAggiornamento = DateTime.Now
-            };
-            await _context.Articolo.AddAsync(articolo);
-            await _context.SaveChangesAsync();
-
             var dolce = new Dolce
             {
-                ArticoloId = articolo.ArticoloId, // Associa la chiave esterna
                 Nome = entity.Nome,
                 Prezzo = entity.Prezzo,
                 Descrizione = entity.Descrizione,
                 ImmagineUrl = entity.ImmagineUrl,
+                Disponibile = entity.Disponibile,
                 Priorita = entity.Priorita,
                 DataCreazione = DateTime.Now,
-                DataAggiornamento = DateTime.Now,
-                Disponibile = false
+                DataAggiornamento = DateTime.Now
             };
 
             await _context.Dolce.AddAsync(dolce);
@@ -129,7 +86,7 @@ namespace Repository.Service
                 throw new ArgumentException("Invalid entity or entity ID");
 
             var existingDolce = await _context.Dolce
-                .FirstOrDefaultAsync(d => d.ArticoloId == entity.ArticoloId && !d.Disponibile);
+                .FirstOrDefaultAsync(d => d.ArticoloId == entity.ArticoloId);
 
             if (existingDolce == null)
                 throw new KeyNotFoundException($"Dolce with ID {entity.ArticoloId} not found");
@@ -145,47 +102,44 @@ namespace Repository.Service
             await _context.SaveChangesAsync();
         }
 
-        // Soft delete
         public async Task<bool> DeleteAsync(int id)
         {
-            var dolce = await _context.Dolce.FirstOrDefaultAsync(d => d.ArticoloId == id && !d.Disponibile);
+            var dolce = await _context.Dolce.FirstOrDefaultAsync(d => d.ArticoloId == id);
             if (dolce == null) return false;
 
-            dolce.Disponibile = true;
-            dolce.DataAggiornamento = DateTime.Now;
+            _context.Dolce.Remove(dolce);
             await _context.SaveChangesAsync();
             return true;
         }
 
         public async Task<bool> ExistsAsync(int id)
         {
-            return await _context.Dolce.AnyAsync(d => d.ArticoloId == id && !d.Disponibile);
+            return await _context.Dolce.AnyAsync(d => d.ArticoloId == id);
         }
 
         public async Task<IEnumerable<DolceDTO>> GetDisponibiliAsync()
         {
             return await _context.Dolce
                 .AsNoTracking()
-                .Where(d => d.Disponibile )
+                .Where(d => d.Disponibile)
                 .OrderBy(d => d.Priorita)
                 .ThenBy(d => d.Nome)
                 .Select(d => MapToDTO(d))
                 .ToListAsync();
-        }   
+        }
 
         public async Task<IEnumerable<DolceDTO>> GetByPrioritaAsync(int priorita)
         {
             return await _context.Dolce
                 .AsNoTracking()
-                .Where(d => d.Priorita == priorita && d.Disponibile )
-                .OrderBy(d => d.Nome)
+                .Where(d => d.Priorita == priorita)
                 .Select(d => MapToDTO(d))
                 .ToListAsync();
         }
 
         public async Task<bool> ToggleDisponibilitaAsync(int id, bool disponibile)
         {
-            var dolce = await _context.Dolce.FirstOrDefaultAsync(d => d.ArticoloId == id && !d.Disponibile);
+            var dolce = await _context.Dolce.FirstOrDefaultAsync(d => d.ArticoloId == id);
             if (dolce == null) return false;
 
             dolce.Disponibile = disponibile;
