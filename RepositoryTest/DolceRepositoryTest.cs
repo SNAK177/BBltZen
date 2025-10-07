@@ -31,7 +31,7 @@ namespace RepositoryTest
 
             var dto = new DolceDTO
             {
-                ArticoloId = 2,
+                
                 Nome = "Tiramisu",
                 Prezzo = 4.5m,
                 Disponibile = true,
@@ -52,8 +52,14 @@ namespace RepositoryTest
             var context = GetInMemoryContext();
             var repo = new DolceRepository(context);
 
-            await repo.AddAsync(new DolceDTO { Nome = "Tiramisu", Prezzo = 4.5m, Disponibile = true, Priorita = 1 });
-            await repo.AddAsync(new DolceDTO { Nome = "Cheesecake", Prezzo = 3.5m, Disponibile = true, Priorita = 2 });
+            await repo.AddAsync(new DolceDTO { Nome = "Tiramisu", 
+                Prezzo = 4.5m, 
+                Disponibile = true, 
+                Priorita = 1 });
+            await repo.AddAsync(new DolceDTO { Nome = "Cheesecake", 
+                Prezzo = 3.5m, 
+                Disponibile = true, 
+                Priorita = 2 });
 
             var all = await repo.GetAllAsync();
 
@@ -69,7 +75,7 @@ namespace RepositoryTest
 
             var dto = await repo.AddAsync(new DolceDTO
             {
-                ArticoloId = 2,
+             
                 Nome = "Tiramisu",
                 Prezzo = 4.5m,
                 Disponibile = true,
@@ -92,7 +98,7 @@ namespace RepositoryTest
 
             var dto = await repo.AddAsync(new DolceDTO
             {
-                ArticoloId = 2,
+               
                 Nome = "Tiramisu",
                 Prezzo = 4.5m,
                 Disponibile = true,
@@ -114,8 +120,14 @@ namespace RepositoryTest
             var context = GetInMemoryContext();
             var repo = new DolceRepository(context);
 
-            await repo.AddAsync(new DolceDTO { Nome = "Tiramisu", Prezzo = 4.5m, Disponibile = true, Priorita = 1 });
-            await repo.AddAsync(new DolceDTO { Nome = "Cheesecake", Prezzo = 3.5m, Disponibile = true, Priorita = 2 });
+            await repo.AddAsync(new DolceDTO { Nome = "Tiramisu", 
+                Prezzo = 4.5m, 
+                Disponibile = true, 
+                Priorita = 1 });
+            await repo.AddAsync(new DolceDTO { Nome = "Cheesecake", 
+                Prezzo = 3.5m, 
+                Disponibile = true, 
+                Priorita = 2 });
 
             var filtered = await repo.GetByPrioritaAsync(1);
 

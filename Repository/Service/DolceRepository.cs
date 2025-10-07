@@ -51,13 +51,6 @@ namespace Repository.Service
 
         public async Task<DolceDTO> AddAsync(DolceDTO entity)
         {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
-            if (string.IsNullOrWhiteSpace(entity.Nome))
-                throw new ArgumentException("Nome is required");
-            if (entity.Prezzo <= 0)
-                throw new ArgumentException("Prezzo must be greater than 0");
-
             var dolce = new Dolce
             {
                 Nome = entity.Nome,

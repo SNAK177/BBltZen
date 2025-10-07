@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Database;
 
 public partial class Dolce
 {
+    //[Key]
+    //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ArticoloId { get; set; }
 
     public string Nome { get; set; } = null!;
