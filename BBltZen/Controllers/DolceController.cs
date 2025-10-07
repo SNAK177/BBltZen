@@ -1,98 +1,77 @@
 ﻿using DTO;
 using Microsoft.AspNetCore.Mvc;
-using Repository.Interface;
+using Repository.Service;
+using System.Threading.Tasks;
 
-namespace BBltZen.Controllers
+namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class DolceController : Controller
+    [Route("api/[controller]")]
+    public class DolceController : ControllerBase
     {
-        private readonly IDolceRepository _dolceRepository;
+        private readonly DolceRepository _repo;
 
-        public DolceController(IDolceRepository dolceRepository)
+        public DolceController(DolceRepository repo)
         {
-            _dolceRepository = dolceRepository;
+            _repo = repo;
         }
 
-        // GET: api/Dolce
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DolceDTO>>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var dolci = await _dolceRepository.GetAllAsync();
+            var dolci = await _repo.GetAllAsync();
             return Ok(dolci);
         }
 
-        // GET: api/Dolce/5
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<DolceDTO>> GetById(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            var dolce = await _dolceRepository.GetByIdAsync(id);
-            if (dolce == null) return NotFound();
+            var dolce = await _repo.GetByIdAsync(id);
+            if (dolce == null)
+                return NotFound();
             return Ok(dolce);
         }
 
-        // POST: api/Dolce
         [HttpPost]
-        public async Task<ActionResult<DolceDTO>> Create([FromBody] DolceDTO dto)
+        public async Task<IActionResult> Create([FromBody] DolceDTO dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var created = await _dolceRepository.AddAsync(dto);
+            var created = await _repo.AddAsync(dto);
             return CreatedAtAction(nameof(GetById), new { id = created.ArticoloId }, created);
         }
 
-        // PUT: api/Dolce/5
-        [HttpPut("{id:int}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] DolceDTO dto)
         {
             if (id != dto.ArticoloId)
-                return BadRequest("ID mismatch");
+                return BadRequest("L'ID non corrisponde.");
 
             try
             {
-                await _dolceRepository.UpdateAsync(dto);
+                await _repo.UpdateAsync(dto);
+                return NoContent();
             }
             catch (KeyNotFoundException)
             {
                 return NotFound();
             }
-
-            return NoContent();
         }
 
-        // DELETE: api/Dolce/5
-        [HttpDelete("{id:int}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var deleted = await _dolceRepository.DeleteAsync(id);
-            if (!deleted) return NotFound();
+            var deleted = await _repo.DeleteAsync(id);
+            if (!deleted)
+                return NotFound();
             return NoContent();
         }
 
-        // PATCH: api/Dolce/5/toggle-disponibilita
-        [HttpPatch("{id:int}/toggle-disponibilita")]
-        public async Task<IActionResult> ToggleDisponibilita(int id, [FromQuery] bool disponibile)
+        [HttpGet("priorita/{priorita}")]
+        public async Task<IActionResult> GetByPriorita(int priorita)
         {
-            var success = await _dolceRepository.ToggleDisponibilitaAsync(id, disponibile);
-            if (!success) return NotFound();
-            return NoContent();
-        }
-
-        // GET: api/Dolce/disponibili
-        [HttpGet("disponibili")]
-        public async Task<ActionResult<IEnumerable<DolceDTO>>> GetDisponibili()
-        {
-            var dolci = await _dolceRepository.GetDisponibiliAsync();
-            return Ok(dolci);
-        }
-
-        // GET: api/Dolce/priorita/3
-        [HttpGet("priorita/{priorita:int}")]
-        public async Task<ActionResult<IEnumerable<DolceDTO>>> GetByPriorita(int priorita)
-        {
-            var dolci = await _dolceRepository.GetByPrioritaAsync(priorita);
+            var dolci = await _repo.GetByPrioritaAsync(priorita);
             return Ok(dolci);
         }
     }

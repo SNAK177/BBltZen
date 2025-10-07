@@ -1,11 +1,11 @@
-﻿using DTO;
+﻿using Database;
+using DTO;
 using Microsoft.EntityFrameworkCore;
-using Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Database;
+using Repository.Interface;
 
 namespace Repository.Service
 {
@@ -18,86 +18,103 @@ namespace Repository.Service
             _context = context;
         }
 
-        private static DolceDTO MapToDTO(Dolce d) => new DolceDTO
-        {
-            ArticoloId = d.ArticoloId,
-            Nome = d.Nome,
-            Prezzo = d.Prezzo,
-            Descrizione = d.Descrizione,
-            ImmagineUrl = d.ImmagineUrl,
-            Disponibile = d.Disponibile,
-            Priorita = d.Priorita,
-            DataCreazione = d.DataCreazione,
-            DataAggiornamento = d.DataAggiornamento
-        };
-
-        // Restituisce tutti i dolci
         public async Task<IEnumerable<DolceDTO>> GetAllAsync()
         {
-            return await _context.Dolce
-                .AsNoTracking()
-                .Select(d => MapToDTO(d))
-                .ToListAsync();
+            var dolci = await _context.Dolce.AsNoTracking().ToListAsync();
+
+            return dolci.Select(d => new DolceDTO
+            {
+                ArticoloId = d.ArticoloId,
+                Nome = d.Nome,
+                Prezzo = d.Prezzo,
+                Descrizione = d.Descrizione,
+                ImmagineUrl = d.ImmagineUrl,
+                Disponibile = d.Disponibile,
+                Priorita = d.Priorita,
+                DataCreazione = d.DataCreazione,
+                DataAggiornamento = d.DataAggiornamento
+            }).ToList();
         }
 
         public async Task<DolceDTO?> GetByIdAsync(int id)
         {
-            var dolce = await _context.Dolce
-                .AsNoTracking()
-                .FirstOrDefaultAsync(d => d.ArticoloId == id);
+            var dolce = await _context.Dolce.FindAsync(id);
+            if (dolce == null) return null;
 
-            return dolce == null ? null : MapToDTO(dolce);
+            return new DolceDTO
+            {
+                ArticoloId = dolce.ArticoloId,
+                Nome = dolce.Nome,
+                Prezzo = dolce.Prezzo,
+                Descrizione = dolce.Descrizione,
+                ImmagineUrl = dolce.ImmagineUrl,
+                Disponibile = dolce.Disponibile,
+                Priorita = dolce.Priorita,
+                DataCreazione = dolce.DataCreazione,
+                DataAggiornamento = dolce.DataAggiornamento
+            };
         }
 
-        public async Task<DolceDTO> AddAsync(DolceDTO entity)
+        public async Task<DolceDTO> AddAsync(DolceDTO dto)
         {
-            var dolce = new Dolce
+            var articolo = new Articolo
             {
-                Nome = entity.Nome,
-                Prezzo = entity.Prezzo,
-                Descrizione = entity.Descrizione,
-                ImmagineUrl = entity.ImmagineUrl,
-                Disponibile = entity.Disponibile,
-                Priorita = entity.Priorita,
+                Tipo = "Dolce",
                 DataCreazione = DateTime.Now,
                 DataAggiornamento = DateTime.Now
+            };
+            await _context.Articolo.AddAsync(articolo);
+            await _context.SaveChangesAsync();
+            
+            var dolce = new Dolce
+            {
+                Nome = dto.Nome,
+                Prezzo = dto.Prezzo,
+                Descrizione = dto.Descrizione,
+                ImmagineUrl = dto.ImmagineUrl,
+                Disponibile = dto.Disponibile,
+                Priorita = dto.Priorita,
+                DataCreazione = DateTime.Now,
+                DataAggiornamento = DateTime.Now,
+                ArticoloId = articolo.ArticoloId
             };
 
             await _context.Dolce.AddAsync(dolce);
             await _context.SaveChangesAsync();
 
-            entity.ArticoloId = dolce.ArticoloId;
-            entity.DataCreazione = dolce.DataCreazione;
-            entity.DataAggiornamento = dolce.DataAggiornamento;
-
-            return entity;
+            return new DolceDTO
+            {
+                ArticoloId = dolce.ArticoloId,
+                Nome = dolce.Nome,
+                Prezzo = dolce.Prezzo,
+                Descrizione = dolce.Descrizione,
+                ImmagineUrl = dolce.ImmagineUrl,
+                Disponibile = dolce.Disponibile,
+                Priorita = dolce.Priorita,
+                DataCreazione = dolce.DataCreazione,
+                DataAggiornamento = dolce.DataAggiornamento
+            };
         }
 
-        public async Task UpdateAsync(DolceDTO entity)
+        public async Task UpdateAsync(DolceDTO dto)
         {
-            if (entity == null || entity.ArticoloId == 0)
-                throw new ArgumentException("Invalid entity or entity ID");
+            var dolce = await _context.Dolce.FindAsync(dto.ArticoloId);
+            if (dolce == null) throw new KeyNotFoundException("Dolce non trovato");
 
-            var existingDolce = await _context.Dolce
-                .FirstOrDefaultAsync(d => d.ArticoloId == entity.ArticoloId);
-
-            if (existingDolce == null)
-                throw new KeyNotFoundException($"Dolce with ID {entity.ArticoloId} not found");
-
-            existingDolce.Nome = entity.Nome;
-            existingDolce.Prezzo = entity.Prezzo;
-            existingDolce.Descrizione = entity.Descrizione;
-            existingDolce.ImmagineUrl = entity.ImmagineUrl;
-            existingDolce.Disponibile = entity.Disponibile;
-            existingDolce.Priorita = entity.Priorita;
-            existingDolce.DataAggiornamento = DateTime.Now;
+            dolce.Nome = dto.Nome;
+            dolce.Prezzo = dto.Prezzo;
+            dolce.Descrizione = dto.Descrizione;
+            dolce.ImmagineUrl = dto.ImmagineUrl;
+            dolce.Disponibile = dto.Disponibile;
+            dolce.Priorita = dto.Priorita;
+            dolce.DataAggiornamento = DateTime.Now;
 
             await _context.SaveChangesAsync();
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var dolce = await _context.Dolce.FirstOrDefaultAsync(d => d.ArticoloId == id);
+            var dolce = await _context.Dolce.FindAsync(id);
             if (dolce == null) return false;
 
             _context.Dolce.Remove(dolce);
@@ -105,40 +122,24 @@ namespace Repository.Service
             return true;
         }
 
-        public async Task<bool> ExistsAsync(int id)
-        {
-            return await _context.Dolce.AnyAsync(d => d.ArticoloId == id);
-        }
-
-        public async Task<IEnumerable<DolceDTO>> GetDisponibiliAsync()
-        {
-            return await _context.Dolce
-                .AsNoTracking()
-                .Where(d => d.Disponibile)
-                .OrderBy(d => d.Priorita)
-                .ThenBy(d => d.Nome)
-                .Select(d => MapToDTO(d))
-                .ToListAsync();
-        }
-
         public async Task<IEnumerable<DolceDTO>> GetByPrioritaAsync(int priorita)
         {
-            return await _context.Dolce
-                .AsNoTracking()
+            var dolci = await _context.Dolce
                 .Where(d => d.Priorita == priorita)
-                .Select(d => MapToDTO(d))
                 .ToListAsync();
-        }
 
-        public async Task<bool> ToggleDisponibilitaAsync(int id, bool disponibile)
-        {
-            var dolce = await _context.Dolce.FirstOrDefaultAsync(d => d.ArticoloId == id);
-            if (dolce == null) return false;
-
-            dolce.Disponibile = disponibile;
-            dolce.DataAggiornamento = DateTime.Now;
-            await _context.SaveChangesAsync();
-            return true;
+            return dolci.Select(d => new DolceDTO
+            {
+                ArticoloId = d.ArticoloId,
+                Nome = d.Nome,
+                Prezzo = d.Prezzo,
+                Descrizione = d.Descrizione,
+                ImmagineUrl = d.ImmagineUrl,
+                Disponibile = d.Disponibile,
+                Priorita = d.Priorita,
+                DataCreazione = d.DataCreazione,
+                DataAggiornamento = d.DataAggiornamento
+            }).ToList();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Database;
@@ -8,6 +9,7 @@ public partial class Dolce
 {
     //[Key]
     //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key , ForeignKey(nameof(Articolo))]
     public int ArticoloId { get; set; }
 
     public string Nome { get; set; } = null!;
