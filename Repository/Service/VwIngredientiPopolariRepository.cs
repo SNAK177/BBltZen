@@ -21,7 +21,8 @@ namespace Repository.Service
         public async Task<IEnumerable<VwIngredientiPopolariDTO>> GetAllAsync()
         {
             return await _context.VwIngredientiPopolari
-                .OrderByDescending(v => v.NumeroSelezioni)
+                .AsNoTracking()
+                //.OrderByDescending(v => v.NumeroSelezioni)
                 .Select(v => new VwIngredientiPopolariDTO
                 {
                     IngredienteId = v.IngredienteId,

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Database;
 
 public partial class VwIngredientiPopolari
 {
+    [ForeignKey("IngredienteId")]
     public int IngredienteId { get; set; }
 
     public string NomeIngrediente { get; set; } = null!;

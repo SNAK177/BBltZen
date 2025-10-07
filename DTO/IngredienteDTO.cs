@@ -9,6 +9,7 @@ namespace DTO
 {
     public class IngredienteDTO
     {
+        [Key]
         public int IngredienteId { get; set; }
         [MaxLength(100)]
         public string Ingrediente1 { get; set; } = null!;

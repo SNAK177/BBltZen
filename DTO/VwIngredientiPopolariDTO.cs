@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,4 +16,6 @@ namespace DTO
         public int? NumeroOrdiniContenenti { get; set; }
         public decimal? PercentualeTotale { get; set; }
     }
+    
+    
 }

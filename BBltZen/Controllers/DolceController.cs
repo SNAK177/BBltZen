@@ -9,7 +9,7 @@ namespace WebAPI.Controllers
     [Route("api/[controller]")]
     public class DolceController : ControllerBase
     {
-        private readonly DolceRepository _repo;
+        private readonly IDolceRepository _repo;
 
         public DolceController(DolceRepository repo)
         {
