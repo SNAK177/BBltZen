@@ -20,9 +20,10 @@ namespace Repository.Service
 
         public async Task<IEnumerable<DolceDTO>> GetAllAsync()
         {
-            var dolci = await _context.Dolce.AsNoTracking().ToListAsync();
+            //var dolci = await _context.Dolce.AsNoTracking().ToListAsync();
 
-            return dolci.Select(d => new DolceDTO
+            return await  _context.Dolce
+                .Select(d => new DolceDTO
             {
                 ArticoloId = d.ArticoloId,
                 Nome = d.Nome,
@@ -33,14 +34,17 @@ namespace Repository.Service
                 Priorita = d.Priorita,
                 DataCreazione = d.DataCreazione,
                 DataAggiornamento = d.DataAggiornamento
-            }).ToList();
+            }).ToListAsync();
         }
 
         public async Task<DolceDTO?> GetByIdAsync(int id)
         {
             var dolce = await _context.Dolce.FindAsync(id);
             if (dolce == null) return null;
-
+           //var art = new ArticoloDTO { Tipo = "Dolce" };
+            //await _context.Articolo.FindAsync(art.ArticoloId);
+            //await _context.SaveChangesAsync();
+            
             return new DolceDTO
             {
                 ArticoloId = dolce.ArticoloId,
@@ -99,6 +103,13 @@ namespace Repository.Service
         public async Task UpdateAsync(DolceDTO dto)
         {
             var dolce = await _context.Dolce.FindAsync(dto.ArticoloId);
+            var articolo = await _context.Articolo.FindAsync(dto.ArticoloId);
+            if (articolo != null)
+            {
+                articolo.DataAggiornamento= DateTime.Now;
+            }
+            await _context.SaveChangesAsync();
+            
             if (dolce == null) throw new KeyNotFoundException("Dolce non trovato");
 
             dolce.Nome = dto.Nome;
@@ -116,15 +127,21 @@ namespace Repository.Service
         {
             var dolce = await _context.Dolce.FindAsync(id);
             if (dolce == null) return false;
-
+            // Prima rimuovi l'entità dipendente (Dolce)
             _context.Dolce.Remove(dolce);
+            
+            var articolo = await _context.Articolo.FindAsync(id);
+            if (articolo != null)
+                _context.Articolo.Remove(articolo);
+
+            //_context.Dolce.Remove(dolce);
             await _context.SaveChangesAsync();
             return true;
         }
 
         public async Task<IEnumerable<DolceDTO>> GetByPrioritaAsync(int priorita)
         {
-            var dolci = await _context.Dolce
+            /*var dolci = await _context.Dolce
                 .Where(d => d.Priorita == priorita)
                 .ToListAsync();
 
@@ -139,7 +156,22 @@ namespace Repository.Service
                 Priorita = d.Priorita,
                 DataCreazione = d.DataCreazione,
                 DataAggiornamento = d.DataAggiornamento
-            }).ToList();
+            }).ToList();*/
+            return await _context.Dolce
+                .Where(d=> d.Priorita == priorita)
+                .Select(d=> new DolceDTO
+                {
+                    ArticoloId = d.ArticoloId,
+                    Nome = d.Nome,
+                    Prezzo = d.Prezzo,
+                    Descrizione = d.Descrizione,
+                    ImmagineUrl = d.ImmagineUrl,
+                    Disponibile = d.Disponibile,
+                    Priorita = d.Priorita,
+                    DataCreazione = d.DataCreazione,
+                    DataAggiornamento = d.DataAggiornamento
+                })
+                .ToListAsync();
         }
     }
 }

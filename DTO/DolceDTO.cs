@@ -10,8 +10,8 @@ namespace DTO
 {
     public class DolceDTO
     {
-        [Key]
-        [DatabaseGenerated((DatabaseGeneratedOption.Identity))]
+        //[Key]
+        //[DatabaseGenerated((DatabaseGeneratedOption.Identity))]
         public int ArticoloId { get; set; }
 
         [Required] 

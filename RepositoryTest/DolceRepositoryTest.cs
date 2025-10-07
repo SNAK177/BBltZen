@@ -26,7 +26,7 @@ namespace RepositoryTest
             var repo = new DolceRepository(context);
             var art = new ArticoloDTO
             {
-                ArticoloId = 1,
+                
                 Tipo = "Dolce"
             };
             var dto = new DolceDTO
@@ -64,6 +64,7 @@ namespace RepositoryTest
         {
             var context = GetInMemoryContext();
             var repo = new DolceRepository(context);
+            
 
             var added = await repo.AddAsync(new DolceDTO { Nome = "Brownie", Prezzo = 2.5m, Disponibile = true });
             var found = await repo.GetByIdAsync(added.ArticoloId);
