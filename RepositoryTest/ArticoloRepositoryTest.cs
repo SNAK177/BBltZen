@@ -7,7 +7,7 @@ namespace RepositoryTest;
 
 public class ArticoloRepositoryTest
 {
-     public class ArticoloRepositoryTests
+    public class ArticoloRepositoryTests
     {
         private BubbleTeaContext GetInMemoryContext()
         {
@@ -25,11 +25,7 @@ public class ArticoloRepositoryTest
             using var context = GetInMemoryContext();
             var repo = new ArticoloRepository(context);
 
-            var dto = new ArticoloDTO
-            {
-                Tipo = "Bubble Tea",
-                DataCreazione = DateTime.UtcNow
-            };
+            var dto = new ArticoloDTO { Tipo = "Bubble Tea", DataCreazione = DateTime.UtcNow };
 
             // Act
             var result = await repo.AddAsync(dto);

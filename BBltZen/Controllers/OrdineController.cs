@@ -9,78 +9,66 @@ namespace BBltZen.Controllers
     public class OrdineController : Controller
     {
         private readonly IOrdineRepository _ordineRepository;
+
         public OrdineController(IOrdineRepository ordineRepository)
         {
             _ordineRepository = ordineRepository;
         }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrdineDTO>>> GetAll()
         {
-            
-                var ordini = await _ordineRepository.GetAllAsync();
-                return Ok(ordini);
-            
-            
+            var ordini = await _ordineRepository.GetAllAsync();
+            return Ok(ordini);
         }
 
         // GET: api/ordine/5
         [HttpGet("{id}")]
         public async Task<ActionResult<OrdineDTO>> GetById(int id)
         {
-            
-            
-                var ordine = await _ordineRepository.GetByIdAsync(id);
+            var ordine = await _ordineRepository.GetByIdAsync(id);
 
-                if (ordine == null)
-                
-                    return NotFound($"Ordine con ID {id} non trovato");
-                
+            if (ordine == null)
+                return NotFound($"Ordine con ID {id} non trovato");
 
-                return Ok(ordine);
-           
+            return Ok(ordine);
         }
 
         // POST: api/ordine
         [HttpPost]
         public async Task<ActionResult<OrdineDTO>> Create([FromBody] OrdineDTO ordineDTO)
         {
-            
-                if (!ModelState.IsValid)
-                
-                    return BadRequest(ModelState);
-                
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-                // Set default values if needed
-                //ordineDTO.DataCreazione = DateTime.Now;
-                //ordineDTO.DataAggiornamento = DateTime.Now;
+            // Set default values if needed
+            //ordineDTO.DataCreazione = DateTime.Now;
+            //ordineDTO.DataAggiornamento = DateTime.Now;
 
-                var createdOrdine = await _ordineRepository.AddAsync(ordineDTO);
+            var createdOrdine = await _ordineRepository.AddAsync(ordineDTO);
 
-                return CreatedAtAction(nameof(GetById),
-                    new { id = createdOrdine.OrdineId },
-                    createdOrdine);
-                    
-            
-            
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = createdOrdine.OrdineId },
+                createdOrdine
+            );
         }
 
         // PUT: api/ordine/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] OrdineDTO ordineDTO)
         {
-            
-            
-                if (id != ordineDTO.OrdineId)
-                {
-                    return BadRequest("ID nell'URL non corrisponde all'ID nell'oggetto");
-                }
+            if (id != ordineDTO.OrdineId)
+            {
+                return BadRequest("ID nell'URL non corrisponde all'ID nell'oggetto");
+            }
 
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-                 try
-                 {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
                 //var existingOrdine = await _ordineRepository.GetByIdAsync(id);
                 //if (existingOrdine == null)
                 //{
@@ -90,14 +78,14 @@ namespace BBltZen.Controllers
                 // Update data aggiornamento
                 //ordineDTO.DataAggiornamento = DateTime.Now;
 
-                    await _ordineRepository.UpdateAsync(ordineDTO);
-                 }
-                 catch (InvalidCastException)
-                 {
-                      return NotFound($"Ordine con ID {id} non trovato");
-                 }
-                 return NoContent();
-            
+                await _ordineRepository.UpdateAsync(ordineDTO);
+            }
+            catch (InvalidCastException)
+            {
+                return NotFound($"Ordine con ID {id} non trovato");
+            }
+            return NoContent();
+
             //catch (ArgumentException ex)
             //{
             //    return BadRequest(ex.Message);
@@ -108,7 +96,7 @@ namespace BBltZen.Controllers
             //}
             //catch (Exception ex)
             //{
-            //    return StatusCode(500, $"Errore interno del server: {ex.Message}");
+            //    return StatusCode(500,$"Errore interno del server: {ex.Message}");
             //}
         }
 
@@ -116,20 +104,15 @@ namespace BBltZen.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            
-            
-                var ordine = await _ordineRepository.GetByIdAsync(id);
-                if (ordine == null)
-                {
-                    return NotFound($"Ordine con ID {id} non trovato");
-                }
+            var ordine = await _ordineRepository.GetByIdAsync(id);
+            if (ordine == null)
+            {
+                return NotFound($"Ordine con ID {id} non trovato");
+            }
 
-                await _ordineRepository.DeleteAsync(id);
+            await _ordineRepository.DeleteAsync(id);
 
-                return NoContent();
-            
-            
-            
+            return NoContent();
         }
     }
 }
