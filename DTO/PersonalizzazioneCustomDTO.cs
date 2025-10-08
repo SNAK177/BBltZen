@@ -16,6 +16,6 @@ namespace DTO
 
         public int DimensioneBicchiereId { get; set; }
 
-        public BevandaCustomDTO BevandaCustomDTO { get; set; }
+        public BevandaCustomDTO? BevandaCustomDTO { get; set; }
     }
 }
