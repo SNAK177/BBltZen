@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Repository.Interface;
-using Repository.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Repository.Interface;
+using Repository.Service;
 
 namespace Repository
 {
@@ -13,9 +13,8 @@ namespace Repository
     {
         public static void AddServiceDb(this IServiceCollection services)
         {
-            services.AddScoped <IOrdineRepository, OrdineRepository>();
+            services.AddScoped<IOrdineRepository, OrdineRepository>();
             services.AddScoped<IDolceRepository, DolceRepository>();
-            services.AddTransient <IVwIngredientiPopolariRepository, VwIngredientiPopolariRepository>();
             services.AddScoped<IIngredienteRepository, IngredienteRepository>();
             services.AddScoped<INotificheOperativeRepository, NotificheOperativeRepository>();
             services.AddScoped<IOrderItemRepository, OrderItemRepository>();
@@ -26,7 +25,12 @@ namespace Repository
             services.AddScoped<ITavoloRepository, TavoloRepository>();
             services.AddScoped<ITaxRatesRepository, TaxRatesRepository>();
             services.AddScoped<IUtentiRepository, UtentiRepository>();
-            services.AddScoped<IVwStatisticheOrdiniAvanzateRepository, VwStatisticheOrdiniAvanzateRepository>();
+            services.AddScoped<IVwIngredientiPopolariRepository, VwIngredientiPopolariRepository>();
+            services.AddScoped<
+                IVwStatisticheOrdiniAvanzateRepository,
+                VwStatisticheOrdiniAvanzateRepository
+            >();
+            services.AddScoped<IBevandaRepository, BevandaCustomRepository>();
         }
     }
 }

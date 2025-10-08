@@ -1,7 +1,7 @@
 ﻿using DTO;
 using Microsoft.EntityFrameworkCore;
 
-namespace Database
+namespace Repository
 {
     public class AppDbContext : DbContext
     {
@@ -19,6 +19,13 @@ namespace Database
         public DbSet<LogAccessiDTO> LogAccessi { get; set; }
         public DbSet<LogAttivitaDTO> LogAttivita { get; set; }
         public DbSet<NotificheOperativeDTO> NotificheOperative { get; set; }
+        public DbSet<StatoOrdineDTO> StatoOrdini { get; set; }
+        public DbSet<StatoPagamentoDTO> StatoPagamenti { get; set; }
+        public DbSet<TaxRatesDTO> TaxRates { get; set; }
+        public DbSet<BevandaCustomDTO> BevandeCustom { get; set; }
+        public DbSet<BevandaStandardDTO> BevandeStandard { get; set; }
+        public DbSet<PersonalizzazioneCustomDTO> PersonalizzazioniCustom { get; set; }
+        public DbSet<DimensioneBicchiereDTO> DimensioniBicchiere { get; set; }
 
         // Views
         public DbSet<VwStatisticheOrdiniAvanzateDTO> VwStatisticheOrdiniAvanzate { get; set; }
