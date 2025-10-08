@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace Database;
 
 public partial class BevandaCustom
 {
+    
     public int BevandaCustomId { get; set; }
 
     public int ArticoloId { get; set; }

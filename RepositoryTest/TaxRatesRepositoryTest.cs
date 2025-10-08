@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Repository.Service;
 using Xunit;
 
-namespace RepositoryTests
+namespace RepositoryTest
 {
     public class TaxRatesRepositoryTests
     {

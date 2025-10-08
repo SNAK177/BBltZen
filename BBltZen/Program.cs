@@ -39,7 +39,7 @@ namespace BBltZen
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            
             builder.Services.AddDbContext<Database.BubbleTeaContext>();
             builder.Services.AddScoped<IOrdineRepository, OrdineRepository>();
             builder.Services.AddScoped<IDolceRepository, DolceRepository>();

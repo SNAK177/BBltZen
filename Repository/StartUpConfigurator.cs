@@ -30,7 +30,8 @@ namespace Repository
                 IVwStatisticheOrdiniAvanzateRepository,
                 VwStatisticheOrdiniAvanzateRepository
             >();
-            services.AddScoped<IBevandaRepository, BevandaCustomRepository>();
+            //services.AddScoped<IBevandaRepository, BevandaCustomRepository>();
+            services.AddScoped<IArticoloRepository, ArticoloRepository>();
         }
     }
 }
