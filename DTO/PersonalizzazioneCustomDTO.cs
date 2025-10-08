@@ -15,6 +15,7 @@ namespace DTO
         public byte GradoDolcezza { get; set; }
 
         public int DimensioneBicchiereId { get; set; }
+
         public BevandaCustomDTO BevandaCustomDTO { get; set; }
     }
 }

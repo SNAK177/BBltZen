@@ -1,26 +1,28 @@
-﻿using Database;
-using DTO;
-using Microsoft.EntityFrameworkCore;
-using Repository.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Database;
+using DTO;
+using Microsoft.EntityFrameworkCore;
+using Repository.Interface;
 
 namespace Repository.Service
 {
     public class TaxRatesRepository : ITaxRatesRepository
     {
         private readonly BubbleTeaContext _context;
+
         public TaxRatesRepository(BubbleTeaContext context)
         {
             _context = context;
         }
+
         public async Task<IEnumerable<TaxRatesDTO>> GetAllAsync()
         {
-            return await _context.TaxRates
-                .Select(t => new TaxRatesDTO
+            return await _context
+                .TaxRates.Select(t => new TaxRatesDTO
                 {
                     TaxRateId = t.TaxRateId,
                     Aliquota = t.Aliquota,
@@ -34,7 +36,8 @@ namespace Repository.Service
         public async Task<TaxRatesDTO> GetByIdAsync(int taxRateId)
         {
             var taxRate = await _context.TaxRates.FindAsync(taxRateId);
-            if (taxRate == null) return null;
+            if (taxRate == null)
+                return null;
 
             return new TaxRatesDTO
             {
@@ -48,10 +51,10 @@ namespace Repository.Service
 
         public async Task<TaxRatesDTO> GetByAliquotaAsync(decimal aliquota)
         {
-            var taxRate = await _context.TaxRates
-                .FirstOrDefaultAsync(t => t.Aliquota == aliquota);
+            var taxRate = await _context.TaxRates.FirstOrDefaultAsync(t => t.Aliquota == aliquota);
 
-            if (taxRate == null) return null;
+            if (taxRate == null)
+                return null;
 
             return new TaxRatesDTO
             {

@@ -1,26 +1,28 @@
-﻿using Database;
-using DTO;
-using Microsoft.EntityFrameworkCore;
-using Repository.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Database;
+using DTO;
+using Microsoft.EntityFrameworkCore;
+using Repository.Interface;
 
 namespace Repository.Service
 {
     public class TavoloRepository : ITavoloRepository
     {
         private readonly BubbleTeaContext _context;
+
         public TavoloRepository(BubbleTeaContext context)
         {
             _context = context;
         }
+
         public async Task<IEnumerable<TavoloDTO>> GetAllAsync()
         {
-            return await _context.Tavolo
-                .Select(t => new TavoloDTO
+            return await _context
+                .Tavolo.Select(t => new TavoloDTO
                 {
                     TavoloId = t.TavoloId,
                     Numero = t.Numero,
@@ -35,7 +37,8 @@ namespace Repository.Service
         public async Task<TavoloDTO> GetByIdAsync(int tavoloId)
         {
             var tavolo = await _context.Tavolo.FindAsync(tavoloId);
-            if (tavolo == null) return null;
+            if (tavolo == null)
+                return null;
 
             return new TavoloDTO
             {
@@ -50,10 +53,10 @@ namespace Repository.Service
 
         public async Task<TavoloDTO> GetByQrCodeAsync(string qrCode)
         {
-            var tavolo = await _context.Tavolo
-                .FirstOrDefaultAsync(t => t.QrCode == qrCode);
+            var tavolo = await _context.Tavolo.FirstOrDefaultAsync(t => t.QrCode == qrCode);
 
-            if (tavolo == null) return null;
+            if (tavolo == null)
+                return null;
 
             return new TavoloDTO
             {
@@ -68,10 +71,10 @@ namespace Repository.Service
 
         public async Task<TavoloDTO> GetByNumeroAsync(int numero)
         {
-            var tavolo = await _context.Tavolo
-                .FirstOrDefaultAsync(t => t.Numero == numero);
+            var tavolo = await _context.Tavolo.FirstOrDefaultAsync(t => t.Numero == numero);
 
-            if (tavolo == null) return null;
+            if (tavolo == null)
+                return null;
 
             return new TavoloDTO
             {
@@ -86,8 +89,8 @@ namespace Repository.Service
 
         public async Task<IEnumerable<TavoloDTO>> GetDisponibiliAsync()
         {
-            return await _context.Tavolo
-                .Where(t => t.Disponibile)
+            return await _context
+                .Tavolo.Where(t => t.Disponibile)
                 .Select(t => new TavoloDTO
                 {
                     TavoloId = t.TavoloId,
@@ -101,8 +104,8 @@ namespace Repository.Service
 
         public async Task<IEnumerable<TavoloDTO>> GetByZonaAsync(string zona)
         {
-            return await _context.Tavolo
-                .Where(t => t.Zona == zona)
+            return await _context
+                .Tavolo.Where(t => t.Zona == zona)
                 .Select(t => new TavoloDTO
                 {
                     TavoloId = t.TavoloId,
@@ -168,8 +171,9 @@ namespace Repository.Service
         {
             if (excludeId.HasValue)
             {
-                return await _context.Tavolo
-                    .AnyAsync(t => t.Numero == numero && t.TavoloId != excludeId.Value);
+                return await _context.Tavolo.AnyAsync(t =>
+                    t.Numero == numero && t.TavoloId != excludeId.Value
+                );
             }
 
             return await _context.Tavolo.AnyAsync(t => t.Numero == numero);
@@ -179,8 +183,9 @@ namespace Repository.Service
         {
             if (excludeId.HasValue)
             {
-                return await _context.Tavolo
-                    .AnyAsync(t => t.QrCode == qrCode && t.TavoloId != excludeId.Value);
+                return await _context.Tavolo.AnyAsync(t =>
+                    t.QrCode == qrCode && t.TavoloId != excludeId.Value
+                );
             }
 
             return await _context.Tavolo.AnyAsync(t => t.QrCode == qrCode);

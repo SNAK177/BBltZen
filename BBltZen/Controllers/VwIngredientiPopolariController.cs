@@ -4,20 +4,20 @@ using Repository.Interface;
 
 namespace BBltZen.Controllers
 {
-
     public class VwIngredientiPopolariController : Controller
     {
         private IVwIngredientiPopolariRepository _repository;
+
         public VwIngredientiPopolariController(IVwIngredientiPopolariRepository repository)
         {
             _repository = repository;
         }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VwIngredientiPopolariDTO>>> GetAll()
         {
-           var result = await _repository.GetAllAsync();
-           return Ok(result);
-        
+            var result = await _repository.GetAllAsync();
+            return Ok(result);
         }
 
         [HttpGet("top/{topN:int}")]
@@ -30,7 +30,9 @@ namespace BBltZen.Controllers
         }
 
         [HttpGet("categoria/{categoria}")]
-        public async Task<ActionResult<IEnumerable<VwIngredientiPopolariDTO>>> GetByCategoria(string categoria)
+        public async Task<ActionResult<IEnumerable<VwIngredientiPopolariDTO>>> GetByCategoria(
+            string categoria
+        )
         {
             var result = await _repository.GetByCategoriaAsync(categoria);
             return Ok(result);
@@ -40,7 +42,7 @@ namespace BBltZen.Controllers
         public async Task<ActionResult<VwIngredientiPopolariDTO>> GetById(int ingredienteId)
         {
             var result = await _repository.GetByIngredienteIdAsync(ingredienteId);
-            if (result == null) 
+            if (result == null)
                 return NotFound($"Ingrediente con ID {ingredienteId} non trovato.");
             return Ok(result);
         }

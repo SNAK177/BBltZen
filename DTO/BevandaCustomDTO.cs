@@ -16,7 +16,6 @@ namespace DTO
 
         public decimal Prezzo { get; set; }
         public DimensioneBicchiereDTO DimensioneBicchiere { get; set; }
-        //public PersonalizzazioneCustomDTO Personalizzazione { get; set; }
-        
+        public PersonalizzazioneCustomDTO Personalizzazione { get; set; }
     }
 }

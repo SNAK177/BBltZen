@@ -1,27 +1,28 @@
-﻿using Database;
-using DTO;
-using Microsoft.EntityFrameworkCore;
-using Repository.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Database;
+using DTO;
+using Microsoft.EntityFrameworkCore;
+using Repository.Interface;
 
 namespace Repository.Service
 {
     public class StatoPagamentoRepository : IStatoPagamentoRepository
     {
-
         private readonly BubbleTeaContext _context;
+
         public StatoPagamentoRepository(BubbleTeaContext context)
         {
             _context = context;
         }
+
         public async Task<IEnumerable<StatoPagamentoDTO>> GetAllAsync()
         {
-            return await _context.StatoPagamento
-                .Select(s => new StatoPagamentoDTO
+            return await _context
+                .StatoPagamento.Select(s => new StatoPagamentoDTO
                 {
                     StatoPagamentoId = s.StatoPagamentoId,
                     StatoPagamento1 = s.StatoPagamento1, // Note the different property name
@@ -33,7 +34,8 @@ namespace Repository.Service
         public async Task<StatoPagamentoDTO> GetByIdAsync(int statoPagamentoId)
         {
             var statoPagamento = await _context.StatoPagamento.FindAsync(statoPagamentoId);
-            if (statoPagamento == null) return null;
+            if (statoPagamento == null)
+                return null;
 
             return new StatoPagamentoDTO
             {
@@ -45,10 +47,12 @@ namespace Repository.Service
 
         public async Task<StatoPagamentoDTO> GetByNomeAsync(string nomeStatoPagamento)
         {
-            var statoPagamento = await _context.StatoPagamento
-                .FirstOrDefaultAsync(s => s.StatoPagamento1 == nomeStatoPagamento);
+            var statoPagamento = await _context.StatoPagamento.FirstOrDefaultAsync(s =>
+                s.StatoPagamento1 == nomeStatoPagamento
+            );
 
-            if (statoPagamento == null) return null;
+            if (statoPagamento == null)
+                return null;
 
             return new StatoPagamentoDTO
             {
@@ -75,7 +79,9 @@ namespace Repository.Service
 
         public async Task UpdateAsync(StatoPagamentoDTO statoPagamentoDto)
         {
-            var statoPagamento = await _context.StatoPagamento.FindAsync(statoPagamentoDto.StatoPagamentoId);
+            var statoPagamento = await _context.StatoPagamento.FindAsync(
+                statoPagamentoDto.StatoPagamentoId
+            );
             if (statoPagamento == null)
                 throw new ArgumentException("Stato pagamento not found");
 
@@ -98,7 +104,9 @@ namespace Repository.Service
 
         public async Task<bool> ExistsAsync(int statoPagamentoId)
         {
-            return await _context.StatoPagamento.AnyAsync(s => s.StatoPagamentoId == statoPagamentoId);
+            return await _context.StatoPagamento.AnyAsync(s =>
+                s.StatoPagamentoId == statoPagamentoId
+            );
         }
     }
 }
