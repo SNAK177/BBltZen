@@ -20,9 +20,11 @@ namespace BBltZen.Controllers
         
         }
 
-        [HttpGet("top/{n:int}")]
+        [HttpGet("top/{topN:int}")]
         public async Task<ActionResult<IEnumerable<VwIngredientiPopolariDTO>>> GetTopN(int n)
         {
+            if (n <= 0)
+                return BadRequest("N deve essere maggiore di zero");
             var result = await _repository.GetTopNAsync(n);
             return Ok(result);
         }
@@ -38,7 +40,8 @@ namespace BBltZen.Controllers
         public async Task<ActionResult<VwIngredientiPopolariDTO>> GetById(int ingredienteId)
         {
             var result = await _repository.GetByIngredienteIdAsync(ingredienteId);
-            if (result == null) return NotFound();
+            if (result == null) 
+                return NotFound($"Ingrediente con ID {ingredienteId} non trovato.");
             return Ok(result);
         }
     }

@@ -1,14 +1,19 @@
-﻿using Database;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+using Database;
 using DTO;
 using Microsoft.EntityFrameworkCore;
 using Repository.Service;
+using Xunit;
 
 namespace RepositoryTest
 {
-    
+    //test non possibile se non uso una classe di test che chiamo fake
     public class VwIngredientiPopolariRepositoryTest
     {
-        private BubbleTeaContext GetInMemoryDbContext()
+        private BubbleTeaContext GetInMemoryContext()
         {
             var options = new DbContextOptionsBuilder<BubbleTeaContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
@@ -16,113 +21,112 @@ namespace RepositoryTest
 
             var context = new BubbleTeaContext(options);
 
-           
-            // Simuliamo dati iniziali
-            context.VwIngredientiPopolari.AddRange(
-                new VwIngredientiPopolari
+            // Dati di test
+            var data = new List<FakeVwIngredientiPopolari>
+            {
+                new()
                 {
                     IngredienteId = 1,
                     NomeIngrediente = "Tapioca",
                     Categoria = "Base",
-                    NumeroSelezioni = 150,
-                    NumeroOrdiniContenenti = 120,
-                    PercentualeTotale = 45.6m
+                    NumeroSelezioni = 120,
+                    NumeroOrdiniContenenti = 80,
+                    PercentualeTotale = 50.5m,
                 },
-                new VwIngredientiPopolari
+                new()
                 {
                     IngredienteId = 2,
-                    NomeIngrediente = "Latte",
-                    Categoria = "Liquido",
-                    NumeroSelezioni = 200,
-                    NumeroOrdiniContenenti = 180,
-                    PercentualeTotale = 60.2m
+                    NomeIngrediente = "Lychee Jelly",
+                    Categoria = "Topping",
+                    NumeroSelezioni = 90,
+                    NumeroOrdiniContenenti = 60,
+                    PercentualeTotale = 37.5m,
                 },
-                new VwIngredientiPopolari
+                new()
                 {
                     IngredienteId = 3,
                     NomeIngrediente = "Matcha",
-                    Categoria = "Tè",
-                    NumeroSelezioni = 90,
-                    NumeroOrdiniContenenti = 80,
-                    PercentualeTotale = 25.1m
-                }
-            );
+                    Categoria = "Base",
+                    NumeroSelezioni = 70,
+                    NumeroOrdiniContenenti = 50,
+                    PercentualeTotale = 30m,
+                },
+            };
 
+            // Invece di AddRange() → popola direttamente in memoria
+            context.AddRange(data);
             context.SaveChanges();
+
             return context;
         }
 
         [Fact]
-        public async Task GetAllAsync_ShouldReturnAllRecords()
+        public async Task GetAllAsync_ReturnsAllIngredienti()
         {
-            var context = GetInMemoryDbContext();
-            var repo = new VwIngredientiPopolariRepository(context);
-            var ingre = new IngredienteDTO
-            {
-                Ingrediente1 = "Tapioca"
-            };
-            var primo = new VwIngredientiPopolariDTO
-            {
-                IngredienteId = 1,
-                NomeIngrediente = ingre.Ingrediente1,
-                Categoria = "Base",
-                NumeroSelezioni = 150,
-                NumeroOrdiniContenenti = 120,
-                PercentualeTotale = 45.6m
-            };
-            await context.SaveChangesAsync();
-            var result = await repo.GetAllAsync();
-            
-            Assert.NotNull(result);
-            Assert.Single(result.Where(r => r.IngredienteId == primo.IngredienteId));
-            Assert.Contains(result, sr => r.NomeIngrediente == "Tapioca"));
+            using var context = GetInMemoryContext();
+            var repository = new VwIngredientiPopolariRepository(context);
+
+            var result = await repository.GetAllAsync();
+
+            Assert.Equal(3, result.Count());
         }
 
         [Fact]
-        public async Task GetTopNAsync_ShouldReturnOrderedTopN()
+        public async Task GetTopNAsync_ReturnsTopNByNumeroSelezioni()
         {
-            var context = GetInMemoryDbContext();
-            var repo = new VwIngredientiPopolariRepository(context);
+            using var context = GetInMemoryContext();
+            var repository = new VwIngredientiPopolariRepository(context);
 
-            var result = await repo.GetTopNAsync(2);
+            var result = await repository.GetTopNAsync(2);
 
             Assert.Equal(2, result.Count());
-            Assert.Equal("Latte", result.First().NomeIngrediente); // Ha il numero selezioni più alto
-        }
-
-        [Fact]
-        public async Task GetByCategoriaAsync_ShouldReturnFilteredResults()
-        {
-            var context = GetInMemoryDbContext();
-            var repo = new VwIngredientiPopolariRepository(context);
-
-            var result = await repo.GetByCategoriaAsync("Base");
-
-            Assert.Single(result);
             Assert.Equal("Tapioca", result.First().NomeIngrediente);
         }
 
         [Fact]
-        public async Task GetByIngredienteIdAsync_ShouldReturnCorrectItem()
+        public async Task GetByCategoriaAsync_ReturnsFilteredByCategoria()
         {
-            var context = GetInMemoryDbContext();
-            var repo = new VwIngredientiPopolariRepository(context);
+            using var context = GetInMemoryContext();
+            var repository = new VwIngredientiPopolariRepository(context);
 
-            var result = await repo.GetByIngredienteIdAsync(2);
+            var result = await repository.GetByCategoriaAsync("Base");
 
-            Assert.NotNull(result);
-            Assert.Equal("Latte", result.NomeIngrediente);
+            Assert.Equal(2, result.Count());
+            Assert.All(result, r => Assert.Equal("Base", r.Categoria));
         }
 
         [Fact]
-        public async Task GetByIngredienteIdAsync_ShouldReturnNull_WhenNotFound()
+        public async Task GetByIngredienteIdAsync_ReturnsCorrectItem()
         {
-            var context = GetInMemoryDbContext();
-            var repo = new VwIngredientiPopolariRepository(context);
+            using var context = GetInMemoryContext();
+            var repository = new VwIngredientiPopolariRepository(context);
 
-            var result = await repo.GetByIngredienteIdAsync(999);
+            var result = await repository.GetByIngredienteIdAsync(2);
+
+            Assert.NotNull(result);
+            Assert.Equal("Lychee Jelly", result.NomeIngrediente);
+        }
+
+        [Fact]
+        public async Task GetByIngredienteIdAsync_ReturnsNull_IfNotFound()
+        {
+            using var context = GetInMemoryContext();
+            var repository = new VwIngredientiPopolariRepository(context);
+
+            var result = await repository.GetByIngredienteIdAsync(999);
 
             Assert.Null(result);
+        }
+
+        public class FakeVwIngredientiPopolari
+        {
+            [Key] // Chiave solo per test
+            public int IngredienteId { get; set; }
+            public string NomeIngrediente { get; set; } = null!;
+            public string Categoria { get; set; } = null!;
+            public int? NumeroSelezioni { get; set; }
+            public int? NumeroOrdiniContenenti { get; set; }
+            public decimal? PercentualeTotale { get; set; }
         }
     }
 }

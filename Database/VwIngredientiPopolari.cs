@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Database;
+[Keyless]
 
 public partial class VwIngredientiPopolari
 {
-    [ForeignKey("IngredienteId")]
     public int IngredienteId { get; set; }
 
     public string NomeIngrediente { get; set; } = null!;
