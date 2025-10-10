@@ -9,6 +9,7 @@ namespace DTO
 {
     public class VwIngredientiPopolariDTO
     {
+        [Key]
         public int IngredienteId { get; set; }
         public string NomeIngrediente { get; set; } = null!;
         public string Categoria { get; set; } = null!;

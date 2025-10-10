@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Database;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Repository.Interface;
 using Repository.Service;
@@ -32,6 +34,7 @@ namespace Repository
             >();
             //services.AddScoped<IBevandaRepository, BevandaCustomRepository>();
             services.AddScoped<IArticoloRepository, ArticoloRepository>();
+
         }
     }
 }

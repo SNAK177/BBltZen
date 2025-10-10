@@ -1260,7 +1260,7 @@ public partial class BubbleTeaContext : DbContext
         {
             entity
                 .HasNoKey()
-                .ToView("vw_ingredienti_popolari");
+                .ToView("VwIngredientiPopolari");
 
             entity.Property(e => e.Categoria)
                 .HasMaxLength(50)

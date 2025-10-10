@@ -22,7 +22,7 @@ namespace RepositoryTest
             var context = new BubbleTeaContext(options);
 
             // Dati di test
-            var data = new List<FakeVwIngredientiPopolari>
+            var data = new List<VwIngredientiPopolari>
             {
                 new()
                 {
@@ -54,7 +54,7 @@ namespace RepositoryTest
             };
 
             // Invece di AddRange() → popola direttamente in memoria
-            context.AddRange(data);
+            //context.AddRange(data);
             context.SaveChanges();
 
             return context;
@@ -118,15 +118,5 @@ namespace RepositoryTest
             Assert.Null(result);
         }
 
-        public class FakeVwIngredientiPopolari
-        {
-            [Key] // Chiave solo per test
-            public int IngredienteId { get; set; }
-            public string NomeIngrediente { get; set; } = null!;
-            public string Categoria { get; set; } = null!;
-            public int? NumeroSelezioni { get; set; }
-            public int? NumeroOrdiniContenenti { get; set; }
-            public decimal? PercentualeTotale { get; set; }
-        }
     }
 }

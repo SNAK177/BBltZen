@@ -6,6 +6,7 @@ using Repository.Interface;
 using Repository.Service;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using Microsoft.AspNetCore.Builder;
+using Database;
 
 namespace BBltZen
 {
@@ -54,7 +55,6 @@ namespace BBltZen
             builder.Services.AddScoped<INotificheOperativeRepository, NotificheOperativeRepository>();
             builder.Services.AddScoped<IVwIngredientiPopolariRepository, VwIngredientiPopolariRepository>();
             builder.Services.AddScoped<IVwStatisticheOrdiniAvanzateRepository, VwStatisticheOrdiniAvanzateRepository>();
-            
 
             var app = builder.Build();
 
