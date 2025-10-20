@@ -1,0 +1,27 @@
+// src/Home.jsx
+import React from "react";
+import "./home.css";
+
+export default function Home() {
+  return (
+    <section className="fnaf-hero">
+      {/* Effetti CRT */}
+        <div className="scanlines" aria-hidden="true" />
+        <div className="noise" aria-hidden="true" />
+
+        <div className="fnaf-wrap">
+          <h1 className="fnaf-title">
+            <span className="glitch" data-text="BUBBLE FREDDY">BUBBLE FREDDY</span>
+            <span className="fnaf-break">LOGGIN</span>
+          </h1>
+
+          <p className="fnaf-subtitle">from 12:00 am at 1:00 am from 6:00 pm at 10:00 pm</p>
+
+          <div className="fnaf-cta">
+            <button className="btn btn-red">Accedi</button>
+            <button className="btn btn-outline">Isciviti</button>
+          </div>
+        </div>
+    </section>
+  );
+}
