@@ -1,360 +1,208 @@
-/* ==== Home styles ==== */
-
-.background-blur {
-  position: absolute;
-  inset: 0; /* copre tutta la section */
-  background-image: url(assets/SFONDO_HOME.png); /* metti il percorso giusto */
-  background-size: cover;
-  background-position: center;
-  filter: blur(10px) brightness(0.6); /* sfoca e scurisce */
-  z-index: 0; /* dietro tutto */
-  pointer-events: none;
-}
-
-.home-hero {
-  background: radial-gradient(1200px 600px at 20% -10%, #9de2ff55, transparent),
-              radial-gradient(1000px 500px at 100% 0%, #a7ffb855, transparent),
-              linear-gradient(180deg, #ffffff, #f7f7f9);
-  min-height: 80vh;
-  display: grid;
-  place-items: center;
-  padding: 40px 20px;
-}
-
-.home-wrap {
-  max-width: 960px;
-  width: 100%;
-  text-align: center;
-}
-
-.home-title {
-  font-size: clamp(32px, 5vw, 48px);
-  margin: 0 0 8px;
-  letter-spacing: -0.02em;
-}
-
-.home-subtitle {
-  color: #5a5a5a;
-  margin: 0 auto 24px;
-  max-width: 720px;
-  line-height: 1.6;
-}
-
-.home-cta {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 36px;
-}
-
-.btn {
-  border: 1px solid transparent;
-  padding: 10px 16px;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 120ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease, border-color 160ms ease;
-}
-
-.btn:active { transform: translateY(1px); }
-
-.btn-primary {
-  background: #0f62fe;
-  color: white;
-  box-shadow: 0 6px 20px rgba(15, 98, 254, 0.25);
-}
-.btn-primary:hover { background: #0c51d1; }
-
-.btn-ghost {
-  background: transparent;
-  color: #0f62fe;
-  border-color: #0f62fe33;
-}
-.btn-ghost:hover {
-  background: #0f62fe10;
-  border-color: #0f62fe55;
-}
-
-.home-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.home-card {
-  background: #fff;
-  border: 1px solid #ececec;
-  border-radius: 14px;
-  padding: 18px;
-  text-align: left;
-  box-shadow: 0 6px 22px rgba(0,0,0,0.06);
-}
-.home-card h3 {
-  margin-top: 0;
-  margin-bottom: 6px;
-  font-size: 18px;
-}
-.home-card p {
-  margin: 0;
-  color: #666;
-  line-height: 1.5;
-}
-
-@media (max-width: 800px) {
-  .home-cards { grid-template-columns: 1fr; }
-  .home-card { text-align: center; }
-}
-
-/* ==== FNaF THEME ==== */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@300;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;800&display=swap");
 
 :root{
-  --bg-0: #050507;
-  --bg-1: #0b0b10;
-  --grid: #11121a;
-  --txt: #e9e9ee;
-  --muted: #9aa0a6;
-  --red: #ff2d55;
-  --cyan: #66e4ff;
-  --purple: #8a5cf6;
+  --teal: #00c7b3;
+  --coral: #ff5b61;
+  --pink: #ff5ea7;
+  --yellow: #f6c10e;
+  --night: #0e0d1a;
+  --ink: #16151f;
+  --card: #10151f;
+  --text: #f5f7fb;
+
+ 
+  --bbt-pattern-url: url(assets/SFONDO_HOME.png);
+
+  --boba-fallback:
+    radial-gradient(circle at 20% 30%, rgba(0,0,0,.35) 0 10px, transparent 11px) 0 0/120px 120px,
+    radial-gradient(circle at 70% 60%, rgba(0,0,0,.3) 0 12px, transparent 13px) 60px 60px/140px 140px,
+    radial-gradient(circle at 40% 80%, rgba(0,0,0,.25) 0 9px, transparent 10px) 20px 100px/160px 160px;
 }
 
-body {
-  background: radial-gradient(1200px 600px at 10% -10%, #4c4b7b22, transparent),
-              radial-gradient(800px 400px at 110% -10%, #2e899922, transparent),
-              linear-gradient(180deg, var(--bg-0), var(--bg-1));
-  color: var(--txt);
-  font-family: Rubik, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0;background:var(--night);color:var(--text);font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif}
+
+.bbt-nav{
+  position:sticky;top:0;z-index:40;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 28px;background:rgba(14,13,26,.6);backdrop-filter:saturate(160%) blur(6px);
+  border-bottom:1px solid rgba(255,255,255,.08)
+}
+.bbt-logo{display:flex;align-items:center;gap:12px}
+.bbt-wordmark{font-family:"Press Start 2P",monospace;font-size:16px;letter-spacing:1px}
+.freddy{width:36px;height:36px;flex:0 0 36px}
+.freddy-bg{fill:#12131d}
+.hat{fill:#8b5cf6}
+.face{fill:#a4632a}
+.ear{fill:#8f5824}
+.eye{fill:#0b0b0f}
+.muzzle{fill:#c8884a}
+.tooth{fill:#fff}
+
+.bbt-links{display:flex;gap:18px;align-items:center}
+.bbt-links a{color:#fff;text-decoration:none;opacity:.9;font-weight:600}
+.bbt-links a:hover{opacity:1}
+.bbt-cta{
+  padding:10px 14px;border-radius:999px;background:linear-gradient(90deg,var(--pink),#b252ff);
+  color:#fff !important;box-shadow:0 6px 18px rgba(255,94,167,.35);font-weight:800
 }
 
-/* sezione principale con immagine di sfondo */
-.fnaf-hero {
+/* HERO */
+.bbt-hero{
+  position:relative;isolation:isolate;
+  min-height:64vh;display:grid;place-items:center;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.35)),
+    radial-gradient(1200px 600px at 10% -10%, rgba(255,94,167,.25), transparent 60%),
+    radial-gradient(900px 500px at 100% 10%, rgba(0,199,179,.25), transparent 60%),
+    linear-gradient(180deg, #e858d4 0%, #a502a8 65%, #5d035e 100%);
+}
+.bbt-hero-inner{text-align:center;padding:72px 20px}
+.bbt-hero-icons{display:flex;gap:10px;justify-content:center;margin-bottom:14px;font-size:28px}
+.bbt-brand{
+  display:inline-flex;gap:12px;align-items:center;justify-content:center;
+  font-family:"Press Start 2P",monospace;font-size:38px;margin:0 0 10px;line-height:1.1;
+  text-shadow:0 6px 20px rgba(0,0,0,.35)
+}
+.bbt-sub{opacity:.9;margin:0 0 22px}
+.btn{
+  display:inline-block;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:800;
+  border:2px solid transparent;transition:transform .15s ease, box-shadow .15s ease, background .15s ease
+}
+.btn.primary{background:linear-gradient(90deg,var(--pink),#b252ff);color:#fff;box-shadow:0 10px 24px rgba(255,94,167,.35)}
+.btn.primary:hover{transform:translateY(-2px)}
+.btn.ghost{border-color:#ffffffb0;color:#fff}
+.btn.ghost:hover{background:#ffffff1a}
+
+.bbt-philosophy{
+  position:relative;isolation:isolate;
+  background:
+  var(--bbt-pattern-url),
+  var(--boba-fallback);
+  background-repeat: repeat, no-repeat;   
+  background-attachment: fixed, scroll;   
+
+  background-size: 720px auto, auto;
+  background-position:center;
+  background-repeat:repeat;
+  padding:110px 20px 120px;
+}
+.bbt-philosophy-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.55));
+  backdrop-filter:saturate(70%);
+  z-index:0
+}
+.bbt-philosophy-inner{
+  position:relative;z-index:1;max-width:920px;margin-inline:auto;text-align:center;color:#fff
+}
+.bbt-philosophy-inner h2{
+  font-size:28px;margin:0 0 18px;text-shadow:0 6px 16px rgba(0,0,0,.4)
+}
+.bbt-philosophy-inner p{margin:8px 0;opacity:.95}
+
+
+.bbt-menu {
   position: relative;
-  min-height: 90vh;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  padding: 48px 16px;
-
-  background-image: url('./assets/SFONDO_HOME.png');
+  isolation: isolate;
+  background:
+    url(assets/sfondo_menu.png);
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  color: #fff;
+  padding: 70px 18px 80px;
+  text-align: center;
 }
-
-/* overlay nero semi-trasparente sopra l'immagine */
-.fnaf-hero::before {
-  content: "";
+.bbt-menu-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4); /* 40% trasparenza */
+  z-index: 0;
+}
+
+.bbt-menu > *:not(.bbt-menu-overlay) {
+  position: relative;
   z-index: 1;
-  pointer-events: none;
 }
+/* --- ANIMAZIONE CARDS MENU IN LOOP --- */
 
-/* contenuto davanti a overlay */
-.fnaf-wrap {
-  position: relative;
-  z-index: 2;
-
-  background-color: rgba(0, 0, 0, 0.75); /* molto più scuro */
-  padding: 32px 40px;
-  border-radius: 16px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.9);
-  max-width: 900px;
-  width: 100%;
-  color: #fff;
-}
-
-.fnaf-title {
-  font-family: "Press Start 2P", monospace;
-  letter-spacing: 2px;
-  line-height: 1.2;
-  margin: 0 0 10px;
-  font-size: clamp(26px, 5.6vw, 56px);
-  text-transform: uppercase;
-  color: #fff;
-  filter: drop-shadow(0 0 12px #000);
-  animation: flicker 3.8s infinite steps(60, end);
-}
-
-.fnaf-title .fnaf-break {
-  display: block;
-  font-size: 0.82em;
-  color: var(--red);
-  text-shadow: 0 0 14px rgba(255,45,85,0.35);
-}
-
-.glitch {
-  position: relative;
-  display: inline-block;
-}
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
+.bbt-cards-wrapper {
   overflow: hidden;
-  clip-path: inset(0 0 0 0);
-  opacity: 0.85;
-}
-.glitch::before {
-  transform: translate(2px, 0);
-  color: var(--cyan);
-  mix-blend-mode: screen;
-}
-.glitch::after {
-  transform: translate(-2px, 0);
-  color: var(--purple);
-  mix-blend-mode: screen;
+  width: 100%;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  margin-bottom: 24px;
 }
 
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 100% { opacity: 1; }
-  20%, 22% { opacity: 0.6; }
-}
-
-.fnaf-subtitle {
-  color: var(--muted);
-  margin: 0 0 20px;
-}
-
-.fnaf-cta {
+.bbt-marquee {
   display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-bottom: 28px;
+  gap: 22px;
+  animation: scroll-marquee 19s linear infinite;
+  width: max-content;
 }
 
-.btn {
-  border: 1px solid transparent;
-  padding: 10px 16px;
-  font-weight: 700;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.1s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-}
-
-.btn:active { transform: translateY(1px); }
-
-.btn-red {
-  background: var(--red);
-  color: #fff;
-  box-shadow: 0 8px 26px rgba(255,45,85,0.25);
-}
-.btn-red:hover { background: #e02449; }
-
-.btn-outline {
-  background: transparent;
-  color: var(--cyan);
-  border-color: #66e4ff66;
-}
-.btn-outline:hover {
-  background: #66e4ff14;
-  border-color: #66e4ff88;
-}
-
-.fnaf-panels {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 10px;
-}
-
-.panel {
-  background: #0b0c12;
-  border: 1px solid #22242f;
-  border-radius: 14px;
-  text-align: left;
-  padding: 16px;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
-}
-.panel h3 {
-  margin: 0 0 8px;
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.3px;
-}
-.panel p {
-  margin: 0;
-}
-
-.muted { color: var(--muted); }
-
-.bullets {
-  margin: 0;
-  padding-left: 18px;
-}
-.bullets li {
-  margin: 4px 0;
-}
-
-.power-bar {
-  position: relative;
-  height: 12px;
-  background: linear-gradient(180deg, #161822, #0e0f17);
-  border: 1px solid #2a2d3a;
-  border-radius: 999px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-.power-bar > span {
-  display: block;
-  height: 100%;
-  background: linear-gradient(90deg, #4cff90, #ffd166, #ff7b7b);
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.35);
-  transition: width 0.3s ease;
-}
-
-/* Effetto CRT */
-.scanlines {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.04) 0px,
-    rgba(255,255,255,0.04) 1px,
-    transparent 2px,
-    transparent 4px
-  );
-  mix-blend-mode: soft-light;
-  animation: scan 7s linear infinite;
-}
-@keyframes scan {
-  0% { opacity: 0.22; }
-  50% { opacity: 0.33; }
-  100% { opacity: 0.22; }
-}
-.noise {
-  position: absolute;
-  inset: -20%;
-  pointer-events: none;
-  z-index: 1;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035' /%3E%3C/svg%3E");
-  animation: buzz 2.6s steps(2,end) infinite;
-}
-@keyframes buzz {
-  50% { transform: translate(1px, -1px) scale(1.002); opacity: 0.9; }
-}
-
-.fnaf-footer {
-  margin-top: 20px;
-  color: #b7b9c6;
-  font-style: italic;
-  opacity: 0.9;
-}
-
-@media (max-width: 900px) {
-  .fnaf-panels {
-    grid-template-columns: 1fr;
+@keyframes scroll-marquee {
+  0% {
+    transform: translateX(-50%);
   }
-  .panel {
-    text-align: center;
+  100% {
+    transform: translateX(0%);
   }
+}
+
+/* Facoltativo: pausa su hover */
+.bbt-cards-wrapper:hover .bbt-marquee {
+  animation-play-state: paused;
+}
+
+
+
+.bbt-menu h3{font-size:26px;margin:0 0 24px}
+.bbt-cards {
+  display: flex;          /* cambia da grid a flex */
+  gap: 22px;
+  max-width: max-content; /* larghezza contenuto per scroll */
+  margin: 0 auto 24px;
+}
+.bbt-card{
+  background:#fff;border-radius:22px;padding:16px;
+  box-shadow:0 12px 26px rgba(0,0,0,.12);display:flex;gap:14px;align-items:center
+}
+.bbt-card-img{font-size:34px;line-height:1}
+.bbt-card-body h4{margin:0 0 6px;font-size:18px}
+.bbt-card-body p{margin:0;color:#333}
+.bbt-menu-cta .btn{background:linear-gradient(90deg,#d31369,#e4c2ff);color:#fff}
+
+
+.bbt-where{
+  background:linear-gradient(180deg,rgb(196, 14, 196) 0,rgb(204, 0, 173) 120px,#0e0d1a 120px,#0e0d1a 100%);
+  padding:70px 18px 100px;color:#fff;text-align:center
+  
+}
+.bbt-where h3{font-size:26px;margin:0 0 22px}
+.bbt-where-card{
+  max-width:980px;margin:0 auto;background:#0f1729;border-radius:22px;
+  display:grid;grid-template-columns:320px 1fr;overflow:hidden;border:1px solid #ffffff12
+}
+.bbt-where-card>div:first-child{padding:22px;text-align:left}
+.bbt-map-skel{background:#0b1220;min-height:260px;display:grid;place-items:center;color:#5d6b8b}
+
+
+.bbt-footer{
+  padding:28px 18px;text-align:center;color:#9aa4c1;border-top:1px solid #ffffff12;background:#0b0f1a
+}
+
+
+.btn.tiny{padding:8px 12px;font-size:12px;border-radius:12px;background:#ff5ea7;color:#fff}
+
+/* RESPONSIVE */
+@media (max-width:1024px){
+  .bbt-cards{grid-template-columns:repeat(2,minmax(200px,1fr))}
+  .bbt-where-card{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .bbt-brand{font-size:28px}
+  .bbt-links{display:none}
+  .bbt-cards{grid-template-columns:1fr}
 }
