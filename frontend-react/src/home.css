@@ -82,7 +82,7 @@ body{
   display:inline-block;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:800;
   border:2px solid transparent;transition:transform .15s ease, box-shadow .15s ease, background .15s ease
 }
-.btn.primary{background:linear-gradient(90deg,var(--pink),#f2ab30);color:#fff;box-shadow:0 10px 24px rgba(234, 197, 53, 0.35)}
+.btn.primary{margin-right: 90px;background:linear-gradient(90deg,var(--pink),#f2ab30);color:#fff;box-shadow:0 10px 24px rgba(234, 197, 53, 0.35)}
 .btn.primary:hover{transform:translateY(-2px)}
 .btn.ghost{border-color:#ffffffb0;color:#fff}
 .btn.ghost:hover{background:#ffffff1a}
