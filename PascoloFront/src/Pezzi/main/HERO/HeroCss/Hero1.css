@@ -1,0 +1,19 @@
+.hero {
+  width: 500px;            /* ← larghezza originale */
+  height: 350px;
+  border: 3px solid #070707;
+  padding: 20px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background-image: url(/src/Img/Foto_hero_sfondo.png);
+  background-size: cover;
+  background-position: center 54%;
+  background-repeat: no-repeat;
+}
+.box-text {
+  margin: 0;
+}

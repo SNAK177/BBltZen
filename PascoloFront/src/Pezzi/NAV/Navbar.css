@@ -1,0 +1,79 @@
+/* 🎨 Stile principale della navbar */
+nav {
+    position: fixed;
+  position: absolute;         /* Posiziona la navbar in modo indipendente dal resto della pagina */
+  top: 20px;                  /* Distanza di 20px dal bordo superiore della finestra */
+  left: 50%;                  /* Sposta il bordo sinistro del nav al centro orizzontale */
+  transform: translateX(-50%);/* Riporta la navbar al centro esatto (trucco per centrare) */
+  
+  width: 100%;                /* Occupa tutta la larghezza disponibile */
+  max-width: 1100px;          /* Ma non supera i 1100px di larghezza totale */
+  box-sizing: border-box;     /* Include padding e bordi nel calcolo della larghezza totale */
+
+   background: #b86b77; /* rosa sporco vintage, effetto "neon smorto" */
+  color: #2b0000;      /* testo rosso molto scuro, quasi marrone */
+  padding: 0.75rem 1rem;      /* Spazio interno (sopra/sotto = 0.75rem, dx/sx = 1rem) */
+
+  display: flex;              /* Attiva il layout flessibile per allineare gli elementi in riga */
+  justify-content: space-between; /* Spinge il logo a sinistra e il menu a destra */
+  align-items: center;        /* Allinea verticalmente al centro tutti gli elementi */
+  border-radius: 70px;
+}
+
+/* 🧸 Stile dell'immagine del logo */
+.logo {
+  height: 150px;              /* Altezza fissa del logo */
+  width: auto;                /* Mantiene le proporzioni originali dell'immagine */
+  display: block;             /* Rimuove lo spazio extra sotto l'immagine */
+}
+
+/* 📋 Stile della lista dei link (menu di navigazione) */
+.menu {
+  display: flex;              
+  gap: 1.5rem;                
+  list-style: none;           
+  align-items: center;        
+
+  margin: 0;                  /* reset margini */
+  padding: 0;                 /* reset padding */
+}
+
+
+/* 🔗 Stile base dei link */
+.menu a {
+  color: #2a0a0a; /* rosso scurissimo, quasi marrone */
+  background: linear-gradient(
+    145deg,
+    #5b2d1f 0%,    /* marrone scuro, base ruggine */
+    #a0522d 40%,   /* color rame rugginoso */
+    #7a3b24 80%    /* ombra più profonda */
+  );
+  border: 1px solid #3a1a10;     /* bordo scuro */
+  border-radius: 6px;            /* angoli leggeri, stile metallico */
+  padding: 0.8rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  box-shadow:
+    inset 1px 1px 2px rgba(255, 255, 255, 0.2), /* luci leggere */
+    inset -2px -2px 5px rgba(0, 0, 0, 0.5),     /* ombra interna */
+    0 2px 4px rgba(0, 0, 0, 0.6);               /* ombra esterna */
+  transition: all 0.25s ease-in-out;
+}
+
+.menu a:hover {
+  background: linear-gradient(
+    145deg,
+    #7a3b24 0%,
+    #a05c3d 40%,
+    #5b2d1f 80%
+  );
+  transform: scale(1.05);
+  box-shadow:
+    inset -1px -1px 2px rgba(255, 255, 255, 0.2),
+    inset 2px 2px 5px rgba(0, 0, 0, 0.5),
+    0 0 8px rgba(255, 80, 0, 0.3); /* leggero bagliore rosso-arancio */
+}
+
+

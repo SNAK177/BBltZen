@@ -1,0 +1,37 @@
+/* Reset utili */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Fai sì che l'area base occupi tutto */
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Meglio usare 100dvh per mobile (barra indirizzi variabile) */
+#root {
+  min-height: 100dvh;  /* fallback desktop: 100vh se preferisci */
+  min-width: 100vw;
+  display: flex;       /* opzionale, se vuoi che dentro si espanda */
+  flex-direction: column;
+}
+
+/* Se NON vuoi il body come flex che centra tutto, rimuovi/override */
+body {
+  display: block;           /* override del tuo display:flex */
+  min-height: 100dvh;
+}
+
+/* Se vuoi mantenere il body flex, allora fai espandere #root */
+ /*
+body {
+  display: flex;
+  min-height: 100dvh;
+}
+#root {
+  flex: 1 1 auto;           // così #root si espande a tutto
+}
+*/

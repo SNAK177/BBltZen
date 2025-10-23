@@ -1,0 +1,109 @@
+/* ==============================
+   Contenitore principale
+   ============================== */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 24px 72px;  /* spazio ai lati per il pulsante */
+  display: flex;
+  align-items: center;
+}
+
+/* ==============================
+   Finestra visibile (ritaglio)
+   ============================== */
+.viewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 370px;
+  box-sizing: border-box;
+}
+
+/* ==============================
+   Nastro scorrevole
+   ============================== */
+.track {
+  display: flex;
+  transition: transform 0.6s ease;
+  will-change: transform;
+}
+
+/* ==============================
+   Ogni PAGINA del carosello
+   ============================== */
+.page {
+  flex: 0 0 auto;
+  padding: 0 16px;   /* spazio tra una pagina e l'altra */
+}
+
+.page-inner {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 16px;         /* spazio tra i due Hero nella stessa pagina */
+}
+
+/* ==============================
+   Larghezze originali
+   ============================== */
+.col-left  > * { width: 500px !important; }
+.col-right > * { width: 740px !important; } /* ridotto da 825 a 740 per non tagliare */
+
+/* Neutralizza margini degli Hero */
+.page-inner > .col > * {
+  margin: 0 !important;
+  display: block;
+}
+
+/* ==============================
+   Pulsante singolo (solo "next")
+   ============================== */
+.btn.single {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 48px;
+  text-align: center;
+  z-index: 2;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn.single:hover {
+  opacity: 0.85;
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* ==============================
+   Mobile responsive
+   ============================== */
+@media (max-width: 900px) {
+  .page-inner {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .col-left  > *,
+  .col-right > * {
+    width: 100% !important;
+  }
+
+  .btn.single {
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+    font-size: 1.5rem;
+    right: 8px;
+  }
+}

@@ -1,0 +1,20 @@
+.MAIN {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* due colonne */
+  gap: 40px;
+  justify-items: center;
+  padding: 40px;
+}
+
+@media (max-width: 900px) {
+  .MAIN {
+  margin-top: 80px;
+  }
+}
+.MAIN {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  margin-top: 200px;
+}

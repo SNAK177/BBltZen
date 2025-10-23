@@ -1,0 +1,21 @@
+.hero2 {
+  width: 825px;           /* ← larghezza originale */
+  height: 350px;
+  border: 3px solid #000;
+  padding: 20px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background-image: url(/src/Img/bubble.png);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.box-text2 {
+  margin: 0;
+}
+
+

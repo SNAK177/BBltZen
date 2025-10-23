@@ -1,0 +1,16 @@
+.MAIN {
+  display: flex;
+  flex-direction: row;
+  
+  align-items: flex-start;
+  gap: 40px;
+  padding: 40px;
+  flex-wrap: wrap; /* così su schermi stretti si impilano */
+}
+
+@media (max-width: 900px) {
+  .MAIN {
+    flex-direction: column;
+    align-items: center;
+  }
+}
