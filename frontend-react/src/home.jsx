@@ -112,7 +112,7 @@ export default function Home() {
           />
           <WhereCard
             city="Terni"
-            address="Vico dell’Ortino, 11"
+            address="Via Roma, 34"
             tel="+390744"
             mapSrc="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2936.304219845037!2d12.541227886969006!3d42.6125036447934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132ee5c432f16eb1%3A0x33a5daf271b8b73d!2sV.%20Roma%2C%2034%2C%2005029%20San%20Gemini%20TR!5e0!3m2!1sit!2sit!4v1761230445185!5m2!1sit!2sit"/>
         </div>
