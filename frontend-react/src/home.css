@@ -1,8 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;800&display=swap");
-
 @font-face {
-  font-family: 'HackedKerX';
-  src: url('./assets/Hacked-KerX.ttf') format('truetype');
+  font-family: 'GoldenVarsityOutline'; 
+  src: url('./assets/coopbl-webfont.woff') format('woff');
+
   font-weight: normal;
   font-style: normal;
 }
@@ -31,21 +30,28 @@ body{
 
 /* NAV */
 .bbt-nav{
-  position:sticky;top:0;z-index:40;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:16px 28px;background:rgba(14,13,26,.6);backdrop-filter:saturate(160%) blur(6px);
+  position:sticky;
+  top:0;z-index:40;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 28px;
+  background:rgba(14,13,26,.6);
+  backdrop-filter:saturate(160%) blur(6px);
   border-bottom:1px solid rgba(255,255,255,.08)
 }
-.bbt-logo{display:flex;align-items:center;gap:12px}
-.bbt-wordmark{font-family:"Press Start 2P",monospace;font-size:16px;letter-spacing:1px}
-.freddy{width:36px;height:36px;flex:0 0 36px}
-.freddy-bg{fill:#12131d}
-.hat{fill:#8b5cf6}
-.face{fill:#a4632a}
-.ear{fill:#8f5824}
-.eye{fill:#0b0b0f}
-.muzzle{fill:#c8884a}
-.tooth{fill:#fff}
+.bbt-logo{
+  display:flex;
+  align-items:center;
+  gap:12px}
+
+.bbt-wordmark{
+  font-family:"GoldenVarsityOutline",monospace;
+  font-size:16px;
+  letter-spacing:1px
+}
+
+
 
 .bbt-links{display:flex;gap:18px;align-items:center}
 .bbt-links a{color:#fff;text-decoration:none;opacity:.9;font-weight:600}
@@ -75,15 +81,16 @@ body{
   object-fit: contain;
 }
 
-.bbt-brand{
-  display:inline-flex;
-  gap:12px;
-  align-items:center;
-  justify-content:center;
-  font-family:'HackedKerX', "Press Start 2P", monospace;
-  font-size:38px;margin:0 0 10px;
-  line-height:1.1;
-  text-shadow:0 6px 20px rgba(0,0,0,.35)
+.bbt-brand {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  font-family: 'GoldenVarsityOutline', sans-serif; 
+  font-size: 38px;
+  margin: 0 0 10px;
+  line-height: 1.1;
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
 .bbt-sub{opacity:.9;margin:0 0 22px}
 .btn{
@@ -117,7 +124,15 @@ body{
   z-index:0
 }
 .bbt-philosophy-inner{
-  position:relative;z-index:1;max-width:920px;margin-inline:auto;text-align:center;color:#fff
+  position:relative;
+  z-index:1;
+  max-width:920px;
+  margin-inline:auto;
+  text-align:center;
+  color:#fff;
+}
+.bbt-philosophy h2{
+  font-family: "GoldenVarsityOutline";
 }
 .bbt-philosophy-inner h2{
   font-size:28px;margin:0 0 18px;text-shadow:0 6px 16px rgba(0,0,0,.4)
@@ -135,10 +150,14 @@ body{
   padding: 70px 18px 80px;
   text-align: center;
 }
-.bbt-menu-overlay { position: absolute; inset: 0; z-index: 0; }
+.bbt-menu-overlay { 
+  position: absolute; 
+  inset: 0; z-index: 0; }
 .bbt-menu > *:not(.bbt-menu-overlay) { position: relative; z-index: 1; }
 .bbt-menu h3{font-size:26px;margin:0 0 24px}
-
+.bbt-menu h3{
+  font-family: "GoldenVarsityOutline";
+}
 /* Cards marquee */
 .bbt-cards-wrapper {
   overflow: hidden;
@@ -173,6 +192,9 @@ body{
   max-width: 1080px;
   margin-inline: auto;
   padding-inline: 18px;
+}
+.bbt-container h3{
+  font-family: "GoldenVarsityOutline";
 }
 
 /* DOVE SIAMO – fascia arancione separata dalle card */

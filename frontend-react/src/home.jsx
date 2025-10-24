@@ -1,4 +1,3 @@
-import React from "react";
 import "./home.css";
 
 export default function Home() {
@@ -7,7 +6,6 @@ export default function Home() {
       {/* NAV */}
       <header className="bbt-nav">
         <div className="bbt-logo">
-          <FreddyPixel />
           <span className="bbt-wordmark">Bubble&nbsp;Freddy</span>
         </div>
         <nav className="bbt-links">
@@ -25,7 +23,6 @@ export default function Home() {
             <img src="logo_fnaf.png" alt="Logo FNAF Boba"></img>
           </div>
           <h1 className="bbt-brand">
-            <FreddyPixel />
             <span>Bubble&nbsp;Freddy</span>
           </h1>
           <p className="bbt-sub">Boba bar dal vibe arcade • FNAF edition</p>
@@ -161,31 +158,3 @@ function WhereCard({ city, address, tel, mapSrc }) {
   );
 }
 
-/** Pixel logo di Freddy in SVG (stilizzato, safe-use, non ufficiale) */
-function FreddyPixel() {
-  return (
-    <svg
-      className="freddy"
-      viewBox="0 0 64 64"
-      role="img"
-      aria-label="Freddy pixel logo"
-    >
-      <rect width="64" height="64" rx="8" className="freddy-bg" />
-      {/* cappello */}
-      <rect x="22" y="8" width="20" height="6" className="hat" />
-      <rect x="27" y="4" width="10" height="6" className="hat" />
-      {/* faccia */}
-      <rect x="12" y="16" width="40" height="34" className="face" rx="6" />
-      {/* orecchie */}
-      <rect x="8" y="18" width="10" height="10" className="ear" />
-      <rect x="46" y="18" width="10" height="10" className="ear" />
-      {/* occhi */}
-      <rect x="22" y="28" width="8" height="6" className="eye" />
-      <rect x="34" y="28" width="8" height="6" className="eye" />
-      {/* muso */}
-      <rect x="20" y="36" width="24" height="10" className="muzzle" rx="3" />
-      <rect x="26" y="40" width="4" height="2" className="tooth" />
-      <rect x="34" y="40" width="4" height="2" className="tooth" />
-    </svg>
-  );
-}
