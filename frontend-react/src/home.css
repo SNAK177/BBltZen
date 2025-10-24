@@ -66,7 +66,15 @@ body{
     linear-gradient(180deg, #eae312 0%, #e2850b 65%, #d80e0e 100%);
 }
 .bbt-hero-inner{text-align:center;padding:72px 20px}
-.bbt-hero-icons{display:flex;gap:10px;justify-content:center;margin-bottom:14px;font-size:28px}
+
+
+.logo-img {
+  margin-bottom: 0px;
+  max-width: 80%;
+  height: auto;
+  object-fit: contain;
+}
+
 .bbt-brand{
   display:inline-flex;
   gap:12px;

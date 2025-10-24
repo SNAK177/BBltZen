@@ -21,10 +21,8 @@ export default function Home() {
       {/* HERO */}
       <section className="bbt-hero">
         <div className="bbt-hero-inner">
-          <div className="bbt-hero-icons" aria-hidden="true">
-            <span className="cup">🧋</span>
-            <span className="cup">🧋</span>
-            <span className="cup">🧋</span>
+          <div className="logo-img">
+            <img src="logo_fnaf.png" alt="Logo FNAF Boba"></img>
           </div>
           <h1 className="bbt-brand">
             <FreddyPixel />
