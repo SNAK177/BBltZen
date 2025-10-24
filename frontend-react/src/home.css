@@ -6,6 +6,9 @@
   font-style: normal;
 }
 
+html{
+  scroll-behavior: smooth;
+}
 :root{
   --teal: #00c7b3;
   --coral: #ff5b61;
