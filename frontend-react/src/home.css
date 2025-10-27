@@ -74,7 +74,7 @@ body{
     radial-gradient(900px 500px at 100% 10%, rgba(0,199,179,.25), transparent 60%),
     linear-gradient(180deg, #eae312 0%, #e2850b 65%, #d80e0e 100%);
 }
-.bbt-hero-inner{text-align:center;padding:72px 20px}
+.bbt-hero-inner{text-align:center;padding:50px 20px}
 
 
 .logo-img {
