@@ -28,7 +28,7 @@ export default function Navbar(){
               <button onClick={logout} className="btn tiny" style={{ marginLeft: 8 }}>Logout</button>
             </>
           ) : (
-            <Link to="/login">Login</Link>
+              <Link to="/login">Login</Link>
           )}
         </nav>
       </div>
