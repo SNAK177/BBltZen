@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bc337e12-958c-4d2e-923b-4e38fd544bf9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend-react/src/components/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/components/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/context/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/context/AuthContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/context/CartContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/context/CartContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/pages/CartCheckout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/pages/CartCheckout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/pages/CustomBuilder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/pages/CustomBuilder.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/pages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/pages/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/pages/Menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/pages/Menu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/pages/MyOrders.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/pages/MyOrders.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="34grq2CD86sLl71PCJ6XjabCp7d" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "Hajar",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
+        <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.26830.93" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bc337e12-958c-4d2e-923b-4e38fd544bf9" name="Changes" comment="" />
+      <created>1761646242955</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761646242955</updated>
+      <workItem from="1761646244044" duration="2524000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
