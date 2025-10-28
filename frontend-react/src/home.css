@@ -101,34 +101,34 @@ body{
 .bbt-marquee{ display:flex; gap:28px; animation:scroll-marquee 24s linear infinite; width:max-content; }
 @keyframes scroll-marquee { 0%{transform:translateX(-50%);} 100%{transform:translateX(0%);} }
 
-/* ===== Card: più larga/alta, immagine non tagliata e senza bianco ===== */
+/* ===== Card: immagine intera, senza tagli o “sbordi” ===== */
 .bbt-card{
-  width:min(1200px, 96vw);          /* larghezza maggiore */
-  height:clamp(520px, 58vw, 720px); /* altezza per verticali, no tagli */
+  width:min(1200px, 96vw);
+  height:clamp(520px, 58vw, 720px);
   display:grid;
-  grid-template-columns:1.7fr 1fr;  /* immagine grande + testo a lato */
+  grid-template-columns:1.7fr 1fr;
   gap:0;
-  background:transparent;           /* elimina bianco dietro */
+  background:transparent;           /* elimina fondo bianco dietro */
   border-radius:30px;
-  overflow:hidden;
+  overflow:hidden;                  /* niente overflow visibile */
   box-shadow:0 24px 44px rgba(0,0,0,.25);
 }
 
-/* contenitore immagine: centra e lascia respiro ai bordi */
+/* contenitore immagine: centra l’img */
 .bbt-card-media{
   display:flex; align-items:center; justify-content:center;
-  padding:16px 14px 18px;           /* anti-taglio top/bottom */
+  padding:16px 14px 18px;           /* dà respiro top/bottom */
   background:transparent;
 }
 
-/* immagine dentro la card SENZA crop */
+/* immagine dentro la card SENZA crop (chiave) */
 .bbt-card-media img{
-  max-height:100%;
-  max-width:100%;
-  width:auto;
-  height:auto;
-  object-fit:contain;               /* chiave: non taglia */
+  width: 475px;
+  object-fit:contain;               /* non taglia mai */
+  object-position:center center;
   display:block;
+  border-radius: 60px;
+  border: rgb(215, 179, 248) solid;
 }
 
 /* lato testo trasparente */
