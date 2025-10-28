@@ -11,6 +11,7 @@ import {useAuth} from './context/AuthContext.jsx'
 
 import Home from './home.jsx'
 import Login from './pages/Login.jsx'
+import Footer from "./components/Footer.jsx";
 
 function PrivateRoute({children, role}) {
     const {user} = useAuth();
@@ -36,6 +37,7 @@ export default function App() {
                 <Route path="/admin/ordini" element={<PrivateRoute role="Admin"><AdminOrdini/></PrivateRoute>}/>
                 <Route path="*" element={<Navigate to="/"/>}/>
             </Routes>
+            <Footer/>
         </div>
     )
 }

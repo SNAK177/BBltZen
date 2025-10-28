@@ -5,27 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc337e12-958c-4d2e-923b-4e38fd544bf9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend-react/src/components/Footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend-react/src/components/Footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-react/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/components/Footer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-react/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/src/context/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/context/AuthContext.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/src/context/CartContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/context/CartContext.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-react/src/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/src/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/src/pages/CartCheckout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/pages/CartCheckout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/src/pages/CustomBuilder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/pages/CustomBuilder.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/src/pages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/pages/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/src/pages/Menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/pages/Menu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/src/pages/MyOrders.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/pages/MyOrders.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,6 +51,7 @@
     "git-widget-placeholder": "Hajar",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -83,7 +83,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1761646242955</updated>
-      <workItem from="1761646244044" duration="2524000" />
+      <workItem from="1761646244044" duration="5468000" />
     </task>
     <servers />
   </component>
