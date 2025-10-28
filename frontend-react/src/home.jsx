@@ -52,6 +52,22 @@ export default function Home() {
               title="Foxy Matcha"
               desc="Matcha latte, miele e perle brune."
             />
+            <Card
+              imgURL="/assets/coralPeach.png"
+              title="Coral Peach"
+              desc="Tè bianco alla pesca, latte leggero e perle traslucide."
+            />
+            <Card
+              imgURL="/assets/charcoalSesame.png"
+              title="Charcoal Sesame"
+              desc="Latte al sesamo nero, nota di cacao e perle classiche"
+            />
+            <Card
+              imgURL="/assets/amberCaramel.png"
+              title="Amber Caramel"
+              desc="Latte al Latte al caramello bruno, zucchero muscovado e boba nere."
+            />
+            
           </div>
         </div>
 
@@ -77,10 +93,8 @@ export default function Home() {
       <section id="ordina" aria-label="Ordina ora" className="bbt-container" style={{ padding: "40px 18px" }}>
         <a className="btn primary" href="/carrello">Vai al carrello e ordina</a>
       </section>
+      <Footer></Footer>
 
-      <footer className="bbt-footer">
-        <span>© {new Date().getFullYear()} Bubble Freddy — FNAF fan theme non ufficiale.</span>
-      </footer>
     </div>
   );
 }
@@ -123,3 +137,12 @@ function WhereCard({ city, address, tel, mapSrc }) {
     </div>
   );
 }
+function Footer() {
+        return (
+          <footer className="bbt-footer">
+            <span>
+              © {new Date().getFullYear()} Bubble Freddy — FNAF fan theme non ufficiale.
+            </span>
+          </footer>
+      );
+    }
