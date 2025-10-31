@@ -27,7 +27,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/menu" element={<MenuPage/>}/>
+                <Route path="/menu" element={<Menu/>}/>
                 <Route path="/custom" element={<CustomBuilder/>}/>
                 <Route path="/carrello" element={<CartCheckout/>}/>
                 <Route path="/ordini" element={<PrivateRoute><MyOrders/></PrivateRoute>}/>

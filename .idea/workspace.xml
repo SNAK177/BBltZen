@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc337e12-958c-4d2e-923b-4e38fd544bf9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend-react/src/components/ProductCard.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-react/src/components/ProductCard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-react/src/data/products.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-react/src/hooks/useCart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-react/src/pages/MenuPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-react/src/styles/MenuPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-react/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-react/src/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/services/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/components/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/context/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/context/AuthContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-react/src/pages/MenuPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-react/src/pages/MenuPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +50,7 @@
     "git-widget-placeholder": "ALESSANDRO",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/AlessandroRufini/Desktop/BBltZen/frontend-react/src/services",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -60,6 +58,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "C:\\Users\\AlessandroRufini\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -71,6 +70,11 @@
         <entry key="com.intellij.reactbuddy.storybook" value="false" />
       </map>
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\AlessandroRufini\Desktop\BBltZen\frontend-react\src\services" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
