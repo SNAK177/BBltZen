@@ -1,0 +1,54 @@
+/* Assumendo che le variabili :root siano globali (es. in index.css)
+:root {
+    --night: #0e0d1a;
+    --pink: #ff5ea7;
+    --text-muted: #9aa4c1;
+}
+*/
+
+.bbt-footer {
+    background-color: var(--night, #0e0d1a);
+    padding: 25px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-muted, #9aa4c1);
+}
+
+.bbt-footer-container {
+    max-width: 1080px; /* Consistente con .bbt-container */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.bbt-social-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.bbt-social-icon {
+    color: var(--text-muted, #9aa4c1);
+    transition: all 0.3s ease;
+}
+
+.bbt-social-icon:hover {
+    color: var(--pink, #ff5ea7); /* Colore highlight al hover */
+    transform: translateY(-3px) scale(1.1);
+}
+
+.bbt-copyright {
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.bbt-copyright p {
+    margin: 0;
+}
+
+.bbt-theme-notice {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 0.25rem;
+}
