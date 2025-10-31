@@ -12,7 +12,7 @@ import {useAuth} from './context/AuthContext.jsx'
 import Home from './home.jsx'
 import Login from './pages/Login.jsx'
 import Footer from "./components/Footer.jsx";
-
+import {MenuPage} from "./pages/MenuPage.jsx";
 function PrivateRoute({children, role}) {
     const {user} = useAuth();
     if (!user) return <Navigate to="/login" replace/>
@@ -27,7 +27,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/menu" element={<Menu/>}/>
+                <Route path="/menu" element={<MenuPage/>}/>
                 <Route path="/custom" element={<CustomBuilder/>}/>
                 <Route path="/carrello" element={<CartCheckout/>}/>
                 <Route path="/ordini" element={<PrivateRoute><MyOrders/></PrivateRoute>}/>

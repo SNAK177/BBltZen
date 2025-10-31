@@ -57,7 +57,7 @@ export default function Home() {
                 </div>
 
                 <div className="bbt-menu-cta">
-                    <a className="btn primary" href="#ordina">Scopri il Menù completo</a>
+                    <a className="btn primary" href="/menu">Scopri il Menù completo</a>
                 </div>
             </section>
 
